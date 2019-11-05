@@ -11,10 +11,21 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <string.h>
 
 int ft_strlen(char *s);
+void *ft_memset(void *str, int c, int n);
 
 int main()
 {
-	printf("ft_strlen %d", ft_strlen("Palabra varias"));	
-}	
+	printf("ft_strlen %d\n^", ft_strlen("Palabra varias"));	
+
+	char str[50];
+	memset(str, 1000,7);
+   	puts(str);
+	char str2[50];
+	ft_memset(str2,'$',7);
+	puts(str2);
+
+}
+
