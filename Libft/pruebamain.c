@@ -15,6 +15,7 @@
 
 int ft_strlen(char *s);
 void *ft_memset(void *str, int c, int n);
+void *ft_memccpy(void *dst, const void *src, int c, unsigned int n);
 
 int main()
 {
@@ -26,6 +27,27 @@ int main()
 	char str2[50];
 	ft_memset(str2, 1000,7);
 	puts(str2);
+
+	/* ft_memccpy */
+	char string1[60] = "Taj Mahal is a historic monument in India.";
+
+	char buffer[61];
+    char *pdest;
+	printf( "Function: _memccpy 42 characters or to character 'c'\n" );
+	printf("memccpy \n");
+	printf( "Source: %s\n", string1 );
+   	pdest = memccpy( buffer, string1, 'c', 42);
+	*pdest = '\0';
+   	printf( "Result: %s\n", buffer );
+   	printf( "Length: %lu characters\n", strlen( buffer ) );
+
+	printf( "Function: _memccpy 42 characters or to character 'c'\n" );
+	printf("memccpy \n");
+	printf( "Source: %s\n", string1 );
+   	pdest = ft_memccpy( buffer, string1, 'c', 42);
+	*pdest = '\0';
+   	printf( "Result: %s\n", buffer );
+   	printf( "Length: %lu characters\n", strlen( buffer ) );
 
 }
 

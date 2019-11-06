@@ -1,3 +1,6 @@
+#define NULL 0
+
+
 void *ft_memset(void *str, int c, unsigned int n)
 {
 	char *t_str;
@@ -12,6 +15,7 @@ void *ft_memset(void *str, int c, unsigned int n)
 	return (str);	
 }
 
+
 void ft_bzero(void *s, unsigned int n)
 {
 	char *t_s;
@@ -25,6 +29,33 @@ void ft_bzero(void *s, unsigned int n)
 		n--; 
 	} 
 	
+}
+
+void *ft_memccpy(void *dst, const void *src, int c, unsigned int n)
+{
+	char *t_dst;
+	char d;
+	
+
+	d = c;
+	t_dst = dst;
+	while (n > 0 && *(char *)src != d)
+	{
+		*t_dst = *(char *)src;
+		t_dst++;
+		src++;
+		n--;
+	}
+	
+	if ((*(char *)src - 1) == d)
+	{	
+		*t_dst = d;
+		return ((void *)t_dst);
+	}
+	return (NULL);	
+	
+
+
 }
 
 int		ft_strlen(char *s)
