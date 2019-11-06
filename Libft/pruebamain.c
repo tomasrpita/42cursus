@@ -24,7 +24,7 @@ int main()
 	memset(str, 1000,7);
    	puts(str);
 	char str2[50];
-	ft_memset(str2,'$',7);
+	ft_memset(str2, 1000,7);
 	puts(str2);
 
 }

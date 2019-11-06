@@ -1,11 +1,30 @@
-void ft_memset(char *str, int c, int n)
+void *ft_memset(void *str, int c, unsigned int n)
 {
-	while (n > 0)
+	char *t_str;
+
+	t_str = str;
+	while (n)
 	{
-		*str = c;
-		str++;
+		*t_str = c;
+		t_str++;
 		n--;
-	}	
+	}
+	return (str);	
+}
+
+void ft_bzero(void *s, unsigned int n)
+{
+	char *t_s;
+
+
+	t_s = s;
+	while (n)
+	{
+		*t_s = '\0';
+		t_s++;
+		n--; 
+	} 
+	
 }
 
 int		ft_strlen(char *s)
