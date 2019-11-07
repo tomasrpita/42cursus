@@ -44,10 +44,13 @@ int main()
 	printf( "Function: _memccpy 42 characters or to character 'c'\n" );
 	printf("memccpy \n");
 	printf( "Source: %s\n", string1 );
-   	pdest = ft_memccpy( buffer, string1, 'c', 42);
-	*pdest = '\0';
-   	printf( "Result: %s\n", buffer );
-   	printf( "Length: %lu characters\n", strlen( buffer ) );
+   	
+	char buffer2[61];
+    char *pdest2;	   
+	pdest2 = ft_memccpy( buffer2, string1, 'c', 42);
+	*pdest2 = '\0';
+   	printf( "Result: %s\n", buffer2 );
+   	printf( "Length: %lu characters\n", strlen( buffer2 ) );
 
 }
 

@@ -33,24 +33,25 @@ void ft_bzero(void *s, unsigned int n)
 
 void *ft_memccpy(void *dst, const void *src, int c, unsigned int n)
 {
-	char *t_dst;
-	char d;
-	
+	unsigned char *t_dst;
+	unsigned char *t_src;
+	unsigned int i;
 
-	d = c;
-	t_dst = dst;
-	while (n > 0 && *(char *)src != d)
+	t_dst = (unsigned char*)dst;
+	t_src = (unsigned char *)src;
+	i = 0;
+	if (dst == NULL || src == NULL)
+		return (NULL);
+	while (i < n)
 	{
-		*t_dst = *(char *)src;
-		t_dst++;
-		src++;
-		n--;
-	}
-	
-	if ((*(char *)src - 1) == d)
-	{	
-		*t_dst = d;
-		return ((void *)t_dst);
+		t_dst[i] = t_src[i];
+		if (*t_dst == c)
+		{
+			return ((char *)dst  + i +1);
+		}
+		i++;
+		
+
 	}
 	return (NULL);	
 	
