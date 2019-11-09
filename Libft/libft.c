@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/08 06:51:18 by tomasrpita        #+#    #+#             */
+/*   Updated: 2019/11/09 12:57:51 by tomasrpita       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #define NULL 0
 
 
@@ -121,3 +133,98 @@ int		ft_tolower(int c)
 		return (c);		
 }
 
+size_t	ft_strlcpy(char *dst, char const *src, size_t size)
+{
+	char const	*sptr;
+	size_t		slen;
+
+	sptr = src;
+	while (*sptr++)
+		;
+	slen = ((size_t)(sptr - src - 1));
+	if (slen < size)
+		ft_strncpy(dst, src, slen + 1);
+	else if (size != 0)
+	{
+		ft_strncpy(dst, src, size - 1);
+		dst[size - 1] = '\0';
+	}
+	return (slen);
+}
+
+void	*ft_calloc(size_t nitems, size_t size)
+{
+	void	*result;
+	size_t	i;
+
+	i = 0;
+	if (nitems == 0 || size == 0)
+		return (NULL);
+	result = malloc(size * nitems);
+	if (result == NULL)
+		return (NULL);
+	while (i <= nitems)
+	{
+		((char *)result)[i] = 0;
+		i++;
+	}
+	return (result);
+}
+
+char	*ft_strdup(char *src)
+{
+	char	*new;
+	int		i;
+	int		size;
+
+	size = 0;
+	while (src[size])
+		++size;
+	if (!(new = malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	i = 0;
+	while (src[i])
+	{
+		new[i] = src[i];
+		i++;
+	}
+	new[i] = '\0';
+	return (new);
+}
+
+char				*ft_strrchr(const char *s, int c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	if (c == 0)
+		return ((char *)s + i);
+	while (i > 0)
+	{
+		i--;
+		if (s[i] == c)
+			return ((char *)s + i);
+	}
+	return (NULL);
+}
+
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+{
+	size_t			i;
+	unsigned char	*ptr_dst;
+	unsigned char	*ptr_src;
+
+	ptr_dst = (unsigned char*)dst;
+	ptr_src = (unsigned char*)src;
+	i = 0;
+	while (i < n)
+	{
+		ptr_dst[i] = ptr_src[i];
+		if (ptr_dst[i] == (unsigned char)c)
+			return ((void*)(dst + i + 1));
+		++i;
+	}
+	return (NULL);
+}
