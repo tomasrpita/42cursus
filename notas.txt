@@ -1,0 +1,163 @@
+define MALLCHECK(x) if (!x) return (-1);
+define BUFF_SIZE 100
+
+
+
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+{
+	unsigned int	count;
+	unsigned int	i;
+
+	count = 0;
+	while (src[count] != '\0')
+		++count;
+	i = 0;
+	while (src[i] != '\0' && i < (size - 1))
+	{
+		dest[i] = src[i];
+		++i;
+	}
+	dest[i] = '\0';
+	return (count);
+}
+
+#include "libft.h"
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*result;
+	size_t	i;
+
+	i = 0;
+	if (nmemb == 0 || size == 0)
+		return (NULL);
+	result = malloc(size * nmemb);
+	while (i <= nmemb)
+	{
+		((char*)result)[i] = 0;
+		i++;
+	}
+	return (result);
+}
+
+#include <stdlib.h>
+
+char	*ft_strdup(char *src)
+{
+	char	*new;
+	int		i;
+	int		size;
+
+	size = 0;
+	while (src[size])
+		++size;
+	if (!(new = malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	i = 0;
+	while (src[i])
+	{
+		new[i] = src[i];
+		i++;
+	}
+	new[i] = '\0';
+	return (new);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	char	*str;
+
+	str = (char *)s;
+	while (*str != c)
+	{
+		if (*str == '\0')
+		{
+			return (NULL);
+		}
+		str++;
+	}
+	return (str);
+}
+
+char	*ft_strrchr(const char *s, int c)
+{
+	char	*last_pos;
+
+	last_pos = (0);
+	while (*s)
+	{
+		if (*s == c)
+			last_pos = (char*)s;
+		++s;
+	}
+	if (last_pos)
+		return (last_pos);
+	if (c == '\0')
+		return ((char*)s);
+	return (0);
+}
+
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+{
+	while (n--)
+	{
+		*(unsigned char *)dst++ = *(unsigned char *)src;
+		if (*(unsigned char *)src++ == (unsigned char)c)
+			return (dst);
+	}
+	return (NULL);
+}
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	size_t				i;
+	unsigned char		*ptr;
+	const unsigned char	*ptr2;
+
+	ptr = (unsigned char*)dst;
+	ptr2 = (unsigned char*)src;
+	i = 0;
+	if (ptr2 < ptr)
+		while (++i <= len)
+			ptr[len - i] = ptr2[len - i];
+	else
+		while (len-- > 0)
+			*(ptr++) = *(ptr2++);
+	return (dst);
+}
+
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	unsigned char	*str;
+	size_t			cur;
+
+	str = (unsigned char *)s;
+	cur = 0;
+	while (cur < n)
+	{
+		if (str[cur] == (unsigned char)c)
+			return ((void *)&str[cur]);
+		cur++;
+	}
+	return (NULL);
+}
+
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	unsigned const char		*t1;
+	unsigned const char		*t2;
+
+	t1 = (unsigned const char *)s1;
+	t2 = (unsigned const char *)s2;
+	if (t1 == NULL || t2 == NULL)
+		return (0);
+	while (n)
+	{
+		if (*t1 != *t2)
+			return (*t1 - *t2);
+		t1++;
+		t2++;
+		n--;
+	}
+	return (0);
+}
