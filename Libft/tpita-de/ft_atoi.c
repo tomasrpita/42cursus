@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:44:50 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/12 21:44:51 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/14 06:31:42 by tomasrpita       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include 'libft.h'
+#include "libft.h"
 
 static int	ft_result(const char *str, int i)
 {

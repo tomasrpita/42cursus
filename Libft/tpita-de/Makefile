@@ -1,0 +1,42 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/11/14 05:56:57 by tomasrpita        #+#    #+#              #
+#    Updated: 2019/11/14 06:23:28 by tomasrpita       ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME=libft.a
+
+SRCS=ft_atoi.c     ft_isascii.c  ft_memcmp.c   ft_strdup.c   ft_strnstr.c \
+	ft_bzero.c    ft_isdigit.c  ft_memcpy.c   ft_strlcat.c  ft_strrchr.c \
+	ft_calloc.c   ft_isprint.c  ft_memmove.c  ft_strlcpy.c  ft_tolower.c \
+	ft_isalnum.c  ft_memccpy.c  ft_memset.c   ft_strlen.c   ft_toupper.c \
+	ft_isalpha.c  ft_memchr.c   ft_strchr.c   ft_strncmp.c 
+
+OBJETCS=ft_atoi.o     ft_isascii.o  ft_memcmp.o   ft_strdup.o   ft_strnstr.o \
+	ft_bzero.o    ft_isdigit.o  ft_memcpy.o   ft_strlcat.o  ft_strrchr.o \
+	ft_calloc.o   ft_isprint.o  ft_memmove.o  ft_strlcpy.o  ft_tolower.o \
+	ft_isalnum.o  ft_memccpy.o  ft_memset.o   ft_strlen.o   ft_toupper.o \
+	ft_isalpha.o  ft_memchr.o   ft_strchr.o   ft_strncmp.o 
+
+INCLUDES=./
+
+all: $(NAME)
+
+$(NAME): $(SRCS) libft.h
+	@gcc -Wall -Wextra -Werror -I$(INCLUDES) -c $(SRCS)
+	@ar rc $(NAME) $(OBJETCS)
+	@ranlib $(NAME)
+
+clean:
+	@/bin/rm -f $(OBJETCS)
+
+fclean: clean
+	@/bin/rm -f $(NAME)
+
+re: fclean all
