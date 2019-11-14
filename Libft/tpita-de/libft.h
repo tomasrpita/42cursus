@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 07:10:38 by tomasrpita        #+#    #+#             */
-/*   Updated: 2019/11/12 21:40:29 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/14 06:52:17 by tomasrpita       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 
 #include <stdlib.h>
+
 
 void    *ft_memset(void *b, int c, size_t len);
 void    ft_bzero(void *s, size_t n);

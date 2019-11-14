@@ -6,11 +6,11 @@
 /*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 18:48:02 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/14 06:31:42 by tomasrpita       ###   ########.fr       */
+/*   Updated: 2019/11/14 06:44:26 by tomasrpita       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+
 
 char	*ft_strnstr(const char *haystack, const char *needle, long int len)
 {

@@ -6,11 +6,11 @@
 /*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 17:54:17 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/14 06:31:42 by tomasrpita       ###   ########.fr       */
+/*   Updated: 2019/11/14 06:44:26 by tomasrpita       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+
 
 int		ft_toupper(int c)
 {

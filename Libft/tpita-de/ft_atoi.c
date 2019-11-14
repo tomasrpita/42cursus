@@ -6,11 +6,9 @@
 /*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:44:50 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/14 06:31:42 by tomasrpita       ###   ########.fr       */
+/*   Updated: 2019/11/14 06:46:06 by tomasrpita       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 static int	ft_result(const char *str, int i)
 {
@@ -28,14 +26,12 @@ static int	ft_result(const char *str, int i)
 int	ft_atoi(const char *str)
 {
 	int	i;
-	int	j;
 	int	nc;
 	int	result;
 
 	result = 0;
 	nc = 1;
 	i = 0;
-	j = 0;
 	while (str[i] == 32 || str[i] == '\f' || str[i] == '\n' ||
 	str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
 		i++;

@@ -6,11 +6,11 @@
 /*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 14:13:23 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/14 06:31:42 by tomasrpita       ###   ########.fr       */
+/*   Updated: 2019/11/14 06:44:26 by tomasrpita       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {

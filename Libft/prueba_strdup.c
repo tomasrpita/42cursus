@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   prueba_strdup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/09 17:49:53 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/14 06:44:26 by tomasrpita       ###   ########.fr       */
+/*   Created: 2019/11/12 06:08:19 by tomasrpita        #+#    #+#             */
+/*   Updated: 2019/11/14 06:29:51 by tomasrpita       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include 'libft.h'
+#include <stdlib.h>
 
+ 
 
-int		ft_isdigit(int c)
+int main()
 {
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
+    char prueba[20] = "Prueba strdup";
+    char *st = ft_strdup(prueba);
+    printf("%s", *st);
+    return (0);
 }
