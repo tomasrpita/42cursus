@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 17:52:43 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/14 06:44:26 by tomasrpita       ###   ########.fr       */
+/*   Updated: 2019/11/14 21:19:33 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 int		ft_isprint(int c)
 {
 	if (c > 31 && c < 127)
 		return (1);
 	return (0);
+}

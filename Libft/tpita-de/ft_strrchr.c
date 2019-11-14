@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 18:16:47 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/14 06:44:26 by tomasrpita       ###   ########.fr       */
+/*   Updated: 2019/11/14 21:18:54 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
 	char *pos;
-    
-    pos = (0);
+
+	pos = (0);
 	while (*s)
 	{
 		if ((unsigned char)*s == (unsigned char)c)
-            pos = (char *)s;
-        s++;
+			pos = (char *)s;
+		s++;
 	}
 	if (pos)
-        return (pos);
-    if (c == '\0')
+		return (pos);
+	if (c == '\0')
 		return ((char*)s);
 	return (NULL);
 }
