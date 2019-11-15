@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 14:13:23 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/14 20:58:21 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/15 17:42:54 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	unsigned char		*t_dst;
 	const unsigned char	*t_src;
 
+	if(dst == 0 && src == 0)
+		return (NULL);
 	t_dst = (unsigned char*)dst;
 	t_src = (unsigned char*)src;
 	i = 0;

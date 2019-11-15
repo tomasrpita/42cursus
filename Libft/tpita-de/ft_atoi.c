@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:44:50 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/14 06:46:06 by tomasrpita       ###   ########.fr       */
+/*   Updated: 2019/11/15 17:47:17 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_result(const char *str, int i)
+#include "libft.h"
+
+static size_t	ft_result(const char *str, int i)
 {
-	int result;
+	size_t result;
 
 	result = 0;
 	while (str[i] >= '0' && str[i] <= '9')

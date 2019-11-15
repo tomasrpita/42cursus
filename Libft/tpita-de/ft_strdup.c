@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 06:08:19 by tomasrpita        #+#    #+#             */
-/*   Updated: 2019/11/14 06:54:42 by tomasrpita       ###   ########.fr       */
+/*   Updated: 2019/11/15 17:55:12 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,5 @@ char	*ft_strdup(const char *s1)
 		s2[i] = s1[i];
 		i++;
 	}
-	/* prueba quitando la siguiente linea con calloc no hace falta */
-	s2[i] = '\0';
 	return (s2);
 }

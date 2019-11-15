@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 07:10:38 by tomasrpita        #+#    #+#             */
-/*   Updated: 2019/11/14 21:08:03 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/15 18:19:30 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int     ft_toupper(int c);
 int     ft_tolower(int c);
 char    *ft_strchr(const char *s, int c);
 char    *fr_strrchr(const char *s, int c);
-int     ft_strcmp(const char *s1, const char *s2);
+int     ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t  ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t  ft_strlcat(char *dst, const char *src, size_t dstsize);
 char    *strnstr(const char *haystack, const char *needle, size_t len);
