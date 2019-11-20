@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 13:39:36 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/17 17:01:17 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/20 21:33:18 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,22 @@ char    **ft_split(char const *s, char c)
 		i = j;
 	}
 	matrix = ft_crtmtx(row, col);
+
+	i = 0;
+	col = 0;
+	j = -1;
+	while (s[i])
+	{
+		++j;
+		count = 0;
+		while (s[j] != c && s[j])
+		{
+		  ++count;
+		  ++j;
+		}
+		if (count > col)
+		  col = count;
+		i = j;
+	}
 	return (matrix);
 }

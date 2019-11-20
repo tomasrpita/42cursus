@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:24:27 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/17 11:44:58 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/20 20:59:23 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,6 @@ static size_t	ft_sizetrim(char const *s1, char const *set)
 }
 
 static char		*ft_trimchar(char *s, char const c)
-{
-	size_t	i;
-	size_t	j;
-	char	*s2;
-	size_t	size;
-
-	size = ft_sizetrim(s, &c);
-	if (NULL == (s2 = (char *)malloc((size + 1) * sizeof(char))))
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-		{
-			s2[j] = s[i];
-			++j;
-		}
-		++i;
-	}
-	s2[j] = '\n';
-	return (s2);
-}
-
-static char		*ft_trimcharb(char *s, char const c)
 {
 	size_t	i;
 	size_t	j;
