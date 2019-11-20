@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 13:39:36 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/20 21:33:18 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/20 21:51:11 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ static char    **ft_crtmtx(size_t row, size_t col)
 
 char    **ft_split(char const *s, char c)
 {
-	size_t    i;
-	size_t    row;
-	size_t    col;
-	size_t    count;
-	char    **matrix;
-	size_t    j;
+	size_t		i;
+	size_t		row;
+	size_t		col;
+	size_t		count;
+	char		**matrix;
+	size_t		j;
+	size_t		k;
+	size_t		l;
 
 	i = 0;
 	row = 0;
@@ -80,18 +82,25 @@ char    **ft_split(char const *s, char c)
 	i = 0;
 	col = 0;
 	j = -1;
-	while (s[i])
+	k = 0;
+	l = 0;
+	while(matrix[k])
 	{
-		++j;
-		count = 0;
-		while (s[j] != c && s[j])
+		while (s[i])
 		{
-		  ++count;
-		  ++j;
+			++j;
+			count = 0;
+			while (s[j] != c && s[j])
+			{
+				matrix[k][l] = s[j];
+				++l;
+				++j;
+			}
+			if (matrix[++k])
+				break;
+			i = j;
 		}
-		if (count > col)
-		  col = count;
-		i = j;
+		++k;
 	}
 	return (matrix);
 }
