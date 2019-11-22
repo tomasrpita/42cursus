@@ -6,74 +6,49 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:24:27 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/20 20:59:23 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/22 19:06:37 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_sizetrim(char const *s1, char const *set)
+static char	*ft_strndup(const char *s, size_t n)
 {
-	size_t i;
-	size_t j;
-	size_t size;
+	char			*res;
+	unsigned int	i;
 
-	size = ft_strlen(s1);
 	i = 0;
-	while (set[i])
-	{
-		j = 0;
-		while (s1[j])
-		{
-			if (s1[j] == set[i])
-				--size;
-			++j;
-		}
-		++i;
-	}
-	return (size);
-}
-
-static char		*ft_trimchar(char *s, char const c)
-{
-	size_t	i;
-	size_t	j;
-	char	*s2;
-	size_t	size;
-
-	size = ft_sizetrim(s, &c);
-	if (NULL == (s2 = (char *)malloc((size + 1) * sizeof(char))))
+	res = malloc(sizeof(char) * (n + 1));
+	if (res == NULL)
 		return (NULL);
-	i = 0;
-	j = 0;
-	while (s[i])
+	while (i < n)
 	{
-		if (s[i] != c)
-		{
-			s2[j] = s[i];
-			++j;
-		}
-		++i;
+		res[i] = s[i];
+		i++;
 	}
-	s2[j] = '\n';
-	return (s2);
+	res[i] = '\0';
+	return (res);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*copy;
-	size_t	s1size;
-	size_t	i;
+	const char *start;
+	const char *end;
 
-	s1size = ft_strlen(s1);
-	if (NULL == (copy = (char *)malloc((s1size + 1) * sizeof(char))))
+	if (s1 == NULL || set == NULL)
 		return (NULL);
-	ft_strlcpy(copy, s1, s1size);
-	i = 0;
-	while (set[i])
-	{
-		copy = ft_trimchar(copy, set[i]);
-		++i;
-	}
-	return (copy);
+	if (*s1 == 0 || *set == '\0')
+		return ((char *)s1);
+	start = s1;
+	while (ft_strchr(set, *start) && start)
+		++start;
+	end = s1;
+	while (*(end + 1))
+		++end;
+	while (ft_strchr(set, *end) && end > s1)
+		--end;
+	if (end < start)
+		return (ft_strdup(""));
+	return (ft_strndup(start, (end - start) + 1));
 }
+

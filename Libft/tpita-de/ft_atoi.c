@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:44:50 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/20 20:39:51 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/22 18:39:21 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static size_t	ft_result(const char *str, int i)
 
 int				ft_atoi(const char *str)
 {
-	int	i;
-	int	nc;
-	long long int	result;
+	int		i;
+	int		nc;
+	size_t	result;
 
 	result = 0;
 	nc = 1;

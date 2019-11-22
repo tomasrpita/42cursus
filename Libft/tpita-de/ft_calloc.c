@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:52:09 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/15 19:34:16 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/22 18:35:59 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t	i;
 
 	if (count == 0)
-		return (NULL);
+		count = 1;
 	i = 0;
 	if (size)
 	{
