@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 07:10:38 by tomasrpita        #+#    #+#             */
-/*   Updated: 2019/11/23 16:05:57 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/23 17:46:39 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,13 @@ void	ft_putstr_fd(char *s, int fd);
 void    ft_putendl_fd(char *s, int fd);
 void    ft_putnbr_fd(int n, int fd);
 
+typedef struct      s_list
+{
+    void            *content;
+    struct s_list   *next;
+}                   t_list;
+
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **alst, t_list *new);
 
 #endif

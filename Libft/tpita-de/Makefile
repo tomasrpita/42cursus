@@ -6,7 +6,7 @@
 #    By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/14 05:56:57 by tomasrpita        #+#    #+#              #
-#    Updated: 2019/11/23 16:06:51 by tpita-de         ###   ########.fr        #
+#    Updated: 2019/11/23 17:47:37 by tpita-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS=ft_atoi.c     ft_isascii.c  ft_memcmp.c   ft_strdup.c   ft_strnstr.c \
 	ft_isalnum.c  ft_memccpy.c  ft_memset.c   ft_strlen.c   ft_toupper.c \
 	ft_isalpha.c  ft_memchr.c   ft_strchr.c   ft_strncmp.c  ft_substr.c \
 	ft_strjoin.c  ft_strtrim.c  ft_split.c    ft_itoa.c		ft_strmapi.c \
-	ft_putchar_fd.c  ft_putstr_fd.c  ft_putendl_fd.c  ft_putnbr_fd.c
+	ft_putchar_fd.c  ft_putstr_fd.c  ft_putendl_fd.c  ft_putnbr_fd.c \
+	ft_lstnew.c  ft_lstadd_front.c
 
 OBJETCS=ft_atoi.o     ft_isascii.o  ft_memcmp.o   ft_strdup.o   ft_strnstr.o \
 	ft_bzero.o    ft_isdigit.o  ft_memcpy.o   ft_strlcat.o  ft_strrchr.o \
@@ -26,7 +27,8 @@ OBJETCS=ft_atoi.o     ft_isascii.o  ft_memcmp.o   ft_strdup.o   ft_strnstr.o \
 	ft_isalnum.o  ft_memccpy.o  ft_memset.o   ft_strlen.o   ft_toupper.o \
 	ft_isalpha.o  ft_memchr.o   ft_strchr.o   ft_strncmp.o  ft_substr.o \
 	ft_strjoin.o  ft_strtrim.o  ft_split.o    ft_itoa.o		ft_strmapi.o \
-	ft_putchar_fd.o  ft_putstr_fd.o  ft_putendl_fd.o  ft_putnbr_fd.o
+	ft_putchar_fd.o  ft_putstr_fd.o  ft_putendl_fd.o  ft_putnbr_fd.o \
+	ft_lstnew.o  ft_lstadd_front.o
 
 INCLUDES=./
 
