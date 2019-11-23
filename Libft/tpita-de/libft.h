@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 07:10:38 by tomasrpita        #+#    #+#             */
-/*   Updated: 2019/11/20 21:10:55 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/23 16:05:57 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 
 #include <stdlib.h>
+#include <unistd.h>
 
 
 void    *ft_memset(void *b, int c, size_t len);
@@ -47,6 +48,10 @@ char	*ft_strtrim(char const *s1, char const *set);
 char    **ft_split(char const *s, char c);
 char	*ft_itoa(int nbr);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void    ft_putendl_fd(char *s, int fd);
+void    ft_putnbr_fd(int n, int fd);
 
 
 #endif
