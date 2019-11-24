@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/23 17:28:03 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/24 13:33:35 by tpita-de         ###   ########.fr       */
+/*   Created: 2019/11/24 14:36:16 by tpita-de          #+#    #+#             */
+/*   Updated: 2019/11/24 14:37:24 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_lstadd_front(t_list **alst, t_list *new)
+void    ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	if (*alst != NULL)
-		new->next = *alst;
-	*alst = new;
+
 }

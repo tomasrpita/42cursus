@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 07:10:38 by tomasrpita        #+#    #+#             */
-/*   Updated: 2019/11/23 17:46:39 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/24 13:58:33 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,8 @@ typedef struct      s_list
 
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **alst, t_list *new);
+int     ft_lstsize(t_list *lst);
+t_list	*ft_lstlast(t_list *lst);
+void    ft_lstadd_back(t_list **alst, t_list *new);
 
 #endif
