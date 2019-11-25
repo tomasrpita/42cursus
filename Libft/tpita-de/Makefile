@@ -6,7 +6,7 @@
 #    By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/14 05:56:57 by tomasrpita        #+#    #+#              #
-#    Updated: 2019/11/24 13:58:23 by tpita-de         ###   ########.fr        #
+#    Updated: 2019/11/25 21:29:03 by tpita-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS=ft_atoi.c     ft_isascii.c  ft_memcmp.c   ft_strdup.c   ft_strnstr.c \
 	ft_strjoin.c  ft_strtrim.c  ft_split.c    ft_itoa.c		ft_strmapi.c \
 	ft_putchar_fd.c  ft_putstr_fd.c  ft_putendl_fd.c  ft_putnbr_fd.c \
 	ft_lstnew.c  ft_lstadd_front.c  ft_lstsize.c  ft_lstlast.c  \
-	ft_lstadd_back.c
+	ft_lstadd_back.c  ft_lstdelone.c  ft_lstclear.c
 
 OBJETCS=ft_atoi.o     ft_isascii.o  ft_memcmp.o   ft_strdup.o   ft_strnstr.o \
 	ft_bzero.o    ft_isdigit.o  ft_memcpy.o   ft_strlcat.o  ft_strrchr.o \
@@ -30,7 +30,7 @@ OBJETCS=ft_atoi.o     ft_isascii.o  ft_memcmp.o   ft_strdup.o   ft_strnstr.o \
 	ft_strjoin.o  ft_strtrim.o  ft_split.o    ft_itoa.o		ft_strmapi.o \
 	ft_putchar_fd.o  ft_putstr_fd.o  ft_putendl_fd.o  ft_putnbr_fd.o \
 	ft_lstnew.o  ft_lstadd_front.o  ft_lstsize.o  ft_lstlast.o  \
-	ft_lstadd_back.o
+	ft_lstadd_back.o  ft_lstdelone.o  ft_lstclear.o
 
 INCLUDES=./
 
