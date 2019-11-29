@@ -1,0 +1,181 @@
+ft_memset:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_bzero:      [OK] [OK] [OK] [OK] 
+ft_memcpy:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_memccpy:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_memmove:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_memchr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_memcmp:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_strlen:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_isalpha:    [OK] 
+ft_isdigit:    [OK] 
+ft_isalnum:    [OK] 
+ft_isascii:    [OK] 
+ft_isprint:    [OK] 
+ft_toupper:    [OK] 
+ft_tolower:    [OK] 
+ft_strchr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_strrchr:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_strncmp:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_strlcpy:    [OK] [OK] [OK] [OK] [OK] [OK] {protected}
+ft_strlcat:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_strnstr:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_atoi:       [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_calloc:     [OK] [OK] [OK] [OK] [OK] 
+ft_strdup:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_substr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] {protected}
+ft_strjoin:    [OK] [OK] [OK] [OK] [OK] {protected}
+ft_strtrim:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] {protected}
+ft_split:      [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] {protected}
+ft_itoa:       [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_strmapi:    [OK] [OK] [OK] [OK] [OK] {protected}
+ft_putchar_fd: [OK] [OK] [KO] 
+[KO]: your putchar_fd does not work with unicode
+Test code:
+	char buff[10];
+	char buff2[10];
+	int c = L'ø';
+	int len = 0;
+
+	putwchart(c, &len, buff2);
+	buff2[len] = 0;
+	fd_to_buffer(2);
+	ft_putchar_fd(c, 2);
+	write(2, "", 1);
+	get_fd_buffer(2, buff, 10);
+	if (!strcmp(buff, buff2))
+		exit(TEST_SUCCESS);
+	exit(TEST_KO);
+
+Diffs:
+  putchar_fd: |�|
+ft_putchar_fd: |ø|
+
+ft_putstr_fd:  [OK] [OK] {protected}
+ft_putendl_fd: [OK] [OK] {protected}
+ft_putnbr_fd:  [OK] [OK] [OK] [OK] [OK] 
+ft_lstnew:     [OK] [OK] [OK] [OK] 
+ft_lstadd_front: [OK] [OK] [OK] 
+ft_lstsize:    [CRASH] [OK] 
+[crash]: your lstsize does not work with basic input
+Test code:
+	t_list *l;
+	int actual;
+	int expected;
+
+	l = lstnew(strdup("1"));
+	l->next = lstnew(strdup("2"));
+	l->next->next = lstnew(strdup("3"));
+	expected = 3;
+	actual = ft_lstsize(l);
+	if (actual == expected)
+		exit(TEST_SUCCESS);
+	exit(TEST_FAILED);
+
+
+ft_lstlast:    [CRASH] [OK] 
+[crash]: your lstlast does not work with basic input
+Test code:
+	t_list *l;
+	t_list *expected;
+	t_list *actual;
+
+	l = lstnew(strdup("1"));
+	l->next = lstnew(strdup("2"));
+	l->next->next = lstnew(strdup("3"));
+	expected = l->next->next;
+	actual = ft_lstlast(l);
+	if (actual == expected)
+		exit(TEST_SUCCESS);
+	exit(TEST_FAILED);
+
+
+ft_lstadd_back:[CRASH] [CRASH] [OK] 
+[crash]: your lstadd_back does not work with basic input
+Test code:
+	t_list *l = lstnew(strdup("nyacat"));
+	t_list *n = lstnew(strdup("OK"));
+
+	ft_lstadd_back(&l, n);
+	if (l->next == n && !strcmp(l->next->content, "OK"))
+	{
+		exit(TEST_SUCCESS);
+	}
+	exit(TEST_FAILED);
+
+
+[crash]: your lstadd_back does not work with basic input
+Test code:
+	t_list *l = lstnew(strdup("nyacat"));
+	t_list *n = lstnew(strdup("OK"));
+
+	ft_lstadd_back(&l, n);
+	if (l->next == n && !strcmp(l->next->content, "OK"))
+	{
+		free(l->next);
+		free(l);
+		exit(TEST_SUCCESS);
+	}
+	free(l->next);
+	free(l);
+	exit(TEST_FAILED);
+
+
+ft_lstdelone:  [OK] 
+ft_lstclear:   [CRASH] [OK] [CRASH] 
+[crash]: your lstclear does not work with basic input
+Test code:
+	t_list *l = lstnew(strdup("nyancat"));
+
+	l->next = lstnew(strdup("#TEST#"));
+	ft_lstclear(&l, lstdelone_f);
+	write(2, "", 1);
+	if (!l)
+		exit(TEST_SUCCESS);
+	exit(TEST_FAILED);
+
+
+[crash]: bad call number of the function pointer
+Test code:
+	char *content = "hello !";
+
+	__delNum = 0;
+	list = malloc(sizeof(t_list));
+	__builtin___memset_chk (list, 0, sizeof(t_list), __builtin_object_size (list, 0));
+	list->next = malloc(sizeof(t_list));
+	__builtin___memset_chk (list->next, 0, sizeof(t_list), __builtin_object_size (list->next, 0));
+	list->content = content;
+	list->next->content = content + 2;
+	ft_lstclear(&list, lstdel_f);
+	write(2, "", 1);
+	if (__delNum == 2)
+		exit(TEST_SUCCESS);
+	exit(TEST_FAILED);
+
+
+ft_lstiter:    [CRASH] {protected}
+[crash]: your lstiter does not work with basic input
+Test code:
+	t_list *l = lstnew(strdup("KO !"));
+
+	l->next = lstnew(strdup("KO !"));
+	l->next->next = lstnew(strdup("KO !"));
+	ft_lstiter(l, lstiter_f);
+	if (!strcmp(l->content, "OK !") && !strcmp(l->next->content, "OK !") && !strcmp(l->next->next->content, "OK !"))
+		exit(TEST_SUCCESS);
+	exit(TEST_FAILED);
+
+
+ft_lstmap:     [CRASH] {protected}
+[crash]: your lstmap does not work with basic input
+Test code:
+	t_list *l = lstnew(strdup(" 1 2 3 "));
+	t_list *ret;
+
+	l->next = lstnew(strdup("ss"));
+	l->next->next = lstnew(strdup("-_-"));
+	ret = ft_lstmap(l, lstmap_f, ((void *)0));
+	if (!strcmp(ret->content, "OK !") && !strcmp(ret->next->content, "OK !") && !strcmp(ret->next->next->content, "OK !") && !strcmp(l->content, " 1 2 3 ") && !strcmp(l->next->content, "ss") && !strcmp(l->next->next->content, "-_-"))
+		exit(TEST_SUCCESS);
+	exit(TEST_FAILED);
+
+
