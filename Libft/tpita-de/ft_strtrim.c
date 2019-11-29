@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:24:27 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/22 19:06:37 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/29 18:35:58 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*ft_strndup(const char *s, size_t n)
 	return (res);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char		*ft_strtrim(char const *s1, char const *set)
 {
 	const char *start;
 	const char *end;
@@ -51,4 +51,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (ft_strdup(""));
 	return (ft_strndup(start, (end - start) + 1));
 }
-

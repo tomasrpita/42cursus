@@ -6,13 +6,13 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 13:39:36 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/23 14:54:52 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/29 18:40:27 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_count_words(char const *s, char c)
+static size_t		ft_count_words(char const *s, char c)
 {
 	size_t	i;
 	size_t	words;
@@ -24,7 +24,6 @@ static size_t	ft_count_words(char const *s, char c)
 	++i;
 	while (s[i])
 	{
-
 		if (s[i] == c && s[i + 1] != c && s[i + 1] != 0)
 			++words;
 		++i;
@@ -32,7 +31,7 @@ static size_t	ft_count_words(char const *s, char c)
 	return (words);
 }
 
-static char	*ft_malloc_word(char const *s, char c)
+static char			*ft_malloc_word(char const *s, char c)
 {
 	char	*word;
 	int		i;
@@ -51,7 +50,7 @@ static char	*ft_malloc_word(char const *s, char c)
 	return (word);
 }
 
-char		**ft_split(char const *s, char c)
+char				**ft_split(char const *s, char c)
 {
 	size_t	words;
 	char	**matrix;

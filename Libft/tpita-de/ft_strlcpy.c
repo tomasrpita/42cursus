@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:14:09 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/22 18:56:36 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/29 18:30:46 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	dst[j] = '\0';
 	return (k);
 }
-

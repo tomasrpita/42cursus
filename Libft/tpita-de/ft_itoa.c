@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 21:20:17 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/20 20:48:44 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/29 18:36:43 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int		get_nbrsize(unsigned int nbr)
 	return (size + 1);
 }
 
-char		*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	char			*str;
 	unsigned int	nbr;

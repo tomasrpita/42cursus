@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 17:43:24 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/15 17:41:16 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/29 18:27:31 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	char			*t_dst;
 	char			*t_src;
 
-	if(dst == 0 && src == 0)
+	if (dst == 0 && src == 0)
 		return (NULL);
 	t_dst = dst;
 	t_src = (char *)src;

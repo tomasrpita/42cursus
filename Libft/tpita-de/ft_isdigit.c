@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 17:49:53 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/14 06:44:26 by tomasrpita       ###   ########.fr       */
+/*   Updated: 2019/11/27 21:46:21 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-int		ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
 		return (1);

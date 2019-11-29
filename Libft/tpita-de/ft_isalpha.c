@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 17:48:45 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/14 06:44:26 by tomasrpita       ###   ########.fr       */
+/*   Updated: 2019/11/27 21:51:25 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-int		ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
 	if ((c > 64 && c < 91) || (c > 96 && c <= 122))
 		return (1);
