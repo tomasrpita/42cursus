@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 13:39:36 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/29 18:40:27 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/30 21:04:00 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static size_t		ft_count_words(char const *s, char c)
 
 	i = 0;
 	words = 0;
-	if (s[i] == c)
+	if (s[i] != c)
 		++words;
 	++i;
 	while (s[i])
@@ -33,8 +33,8 @@ static size_t		ft_count_words(char const *s, char c)
 
 static char			*ft_malloc_word(char const *s, char c)
 {
-	char	*word;
-	int		i;
+	char		*word;
+	size_t		i;
 
 	i = 0;
 	while (s[i] && s[i] != c)
@@ -57,6 +57,8 @@ char				**ft_split(char const *s, char c)
 	size_t	i;
 
 	if (s == NULL)
+		return (NULL);
+	if (*s == '\0')
 		return (NULL);
 	words = ft_count_words(s, c);
 	if ((matrix = (char **)malloc((words + 1) * sizeof(char *))) == NULL)

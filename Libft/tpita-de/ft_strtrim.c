@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:24:27 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/29 18:35:58 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/30 19:39:43 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ char		*ft_strtrim(char const *s1, char const *set)
 	if (*s1 == 0 || *set == '\0')
 		return ((char *)s1);
 	start = s1;
-	while (ft_strchr(set, *start) && start)
-		++start;
+	while (ft_strchr(set, *start) && *start)
+		start++;
+	if (start == '\0')
+		return (ft_strdup(""));
 	end = s1;
 	while (*(end + 1))
 		++end;
