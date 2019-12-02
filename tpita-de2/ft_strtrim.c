@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:24:27 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/12/02 21:16:41 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/11/30 19:39:43 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static char	*ft_strndup(const char *s, size_t n)
 	unsigned int	i;
 
 	i = 0;
-	;
-	if (!(res = malloc(sizeof(char) * (n + 1))))
+	res = malloc(sizeof(char) * (n + 1));
+	if (res == NULL)
 		return (NULL);
 	while (i < n)
 	{
@@ -35,13 +35,13 @@ char		*ft_strtrim(char const *s1, char const *set)
 	const char *start;
 	const char *end;
 
-	if (!s1 || !set)
+	if (s1 == NULL || set == NULL)
 		return (NULL);
 	if (*s1 == 0 || *set == '\0')
 		return ((char *)s1);
 	start = s1;
 	while (ft_strchr(set, *start) && *start)
-		++start;
+		start++;
 	if (start == '\0')
 		return (ft_strdup(""));
 	end = s1;

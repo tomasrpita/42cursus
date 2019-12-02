@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 20:51:01 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/12/02 21:04:49 by tpita-de         ###   ########.fr       */
+/*   Created: 2019/11/09 18:48:02 by tpita-de          #+#    #+#             */
+/*   Updated: 2019/11/30 18:25:56 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strnstr(const char *h, const char *n, size_t len)
 {
-	unsigned int	i;
-	char			*result;
-	size_t			size;
+	size_t	i;
+	size_t	j;
+	size_t	k;
 
-	if (!s || !f)
-		return (NULL);
-	size = ft_strlen((char*)s);
-	if (!s || !(result = (char *)malloc((size + 1) * sizeof(char))))
-		return (NULL);
+	if (n[0] == '\0')
+		return ((char *)h);
+	k = 0;
 	i = 0;
-	while (s[i])
+	while (h[i] && i < len)
 	{
-		result[i] = f(i, s[i]);
-		++i;
+		j = 0;
+		if (h[i] == n[j])
+		{
+			k = i;
+			while (h[k] == n[j] && n[j] && k < len)
+			{
+				k++;
+				j++;
+			}
+			if (n[j] == '\0')
+				return ((char *)&h[i]);
+		}
+		i++;
 	}
-	result[i] = '\0';
-	return (result);
+	return (NULL);
 }

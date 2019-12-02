@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 20:51:01 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/12/02 21:04:49 by tpita-de         ###   ########.fr       */
+/*   Created: 2019/11/11 20:52:09 by tpita-de          #+#    #+#             */
+/*   Updated: 2019/11/22 18:35:59 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	*ft_calloc(size_t count, size_t size)
 {
-	unsigned int	i;
-	char			*result;
-	size_t			size;
+	void	*ret;
+	size_t	i;
 
-	if (!s || !f)
-		return (NULL);
-	size = ft_strlen((char*)s);
-	if (!s || !(result = (char *)malloc((size + 1) * sizeof(char))))
-		return (NULL);
+	if (count == 0)
+		count = 1;
 	i = 0;
-	while (s[i])
+	if (size)
 	{
-		result[i] = f(i, s[i]);
-		++i;
+		if (NULL == (ret = malloc(count * size)))
+			return (NULL);
+		while (i < (count * size))
+		{
+			((char *)ret)[i] = 0;
+			i++;
+		}
+		return (ret);
 	}
-	result[i] = '\0';
-	return (result);
+	if (NULL == (ret = malloc(count)))
+		return (NULL);
+	while (i < count)
+	{
+		((char *)ret)[i] = 0;
+		i++;
+	}
+	return (ret);
 }

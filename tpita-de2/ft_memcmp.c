@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 20:51:01 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/12/02 21:04:49 by tpita-de         ###   ########.fr       */
+/*   Created: 2019/11/10 16:41:06 by tpita-de          #+#    #+#             */
+/*   Updated: 2019/11/29 19:59:55 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned int	i;
-	char			*result;
-	size_t			size;
+	unsigned const char		*t_str1;
+	unsigned const char		*s_str2;
 
-	if (!s || !f)
-		return (NULL);
-	size = ft_strlen((char*)s);
-	if (!s || !(result = (char *)malloc((size + 1) * sizeof(char))))
-		return (NULL);
-	i = 0;
-	while (s[i])
+	t_str1 = (unsigned const char *)s1;
+	s_str2 = (unsigned const char *)s2;
+	while (n)
 	{
-		result[i] = f(i, s[i]);
-		++i;
+		if (*t_str1 != *s_str2)
+			return (*t_str1 - *s_str2);
+		t_str1++;
+		s_str2++;
+		n--;
 	}
-	result[i] = '\0';
-	return (result);
+	return (0);
 }

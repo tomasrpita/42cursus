@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 20:51:01 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/12/02 21:04:49 by tpita-de         ###   ########.fr       */
+/*   Created: 2019/10/10 17:14:09 by tpita-de          #+#    #+#             */
+/*   Updated: 2019/11/29 18:30:46 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	unsigned int	i;
-	char			*result;
-	size_t			size;
+	size_t	j;
+	size_t	k;
 
-	if (!s || !f)
-		return (NULL);
-	size = ft_strlen((char*)s);
-	if (!s || !(result = (char *)malloc((size + 1) * sizeof(char))))
-		return (NULL);
-	i = 0;
-	while (s[i])
+	k = 0;
+	if (src == NULL)
+		return (0);
+	while (src[k] != '\0')
+		k++;
+	if (dstsize == 0)
+		return (k);
+	j = 0;
+	while (src[j] != '\0' && j < (dstsize - 1))
 	{
-		result[i] = f(i, s[i]);
-		++i;
+		dst[j] = src[j];
+		j++;
 	}
-	result[i] = '\0';
-	return (result);
+	dst[j] = '\0';
+	return (k);
 }

@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 20:51:01 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/12/02 21:04:49 by tpita-de         ###   ########.fr       */
+/*   Created: 2019/11/16 15:53:28 by tpita-de          #+#    #+#             */
+/*   Updated: 2019/12/02 21:07:56 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned int	i;
-	char			*result;
-	size_t			size;
+	char	*d;
+	size_t	size;
+	size_t	i;
 
-	if (!s || !f)
+	if (!s)
 		return (NULL);
-	size = ft_strlen((char*)s);
-	if (!s || !(result = (char *)malloc((size + 1) * sizeof(char))))
+	if (ft_strlen(s) < start)
+		return (ft_strdup(""));
+	size = (ft_strlen(s) + start);
+	if (!(d = (char *)malloc((len + 1) * sizeof(char))))
 		return (NULL);
 	i = 0;
-	while (s[i])
+	while (i < len)
 	{
-		result[i] = f(i, s[i]);
+		d[i] = s[start + i];
 		++i;
 	}
-	result[i] = '\0';
-	return (result);
+	d[i] = '\0';
+	return (d);
 }

@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 20:51:01 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/12/02 21:04:49 by tpita-de         ###   ########.fr       */
+/*   Created: 2019/11/10 18:16:47 by tpita-de          #+#    #+#             */
+/*   Updated: 2019/11/15 19:18:51 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strrchr(const char *s, int c)
 {
-	unsigned int	i;
-	char			*result;
-	size_t			size;
+	char *pos;
 
-	if (!s || !f)
-		return (NULL);
-	size = ft_strlen((char*)s);
-	if (!s || !(result = (char *)malloc((size + 1) * sizeof(char))))
-		return (NULL);
-	i = 0;
-	while (s[i])
+	pos = (0);
+	while (*s)
 	{
-		result[i] = f(i, s[i]);
-		++i;
+		if ((unsigned char)*s == (unsigned char)c)
+			pos = (char *)s;
+		s++;
 	}
-	result[i] = '\0';
-	return (result);
+	if (pos)
+		return (pos);
+	if (c == '\0')
+		return ((char*)s);
+	return (NULL);
 }
