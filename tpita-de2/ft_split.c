@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 13:39:36 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/12/02 21:21:29 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/12/04 20:57:11 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char			*ft_malloc_word(char const *s, char c)
 	i = 0;
 	while (s[i] && s[i] != c)
 		++i;
-	if (!(word = (char *)malloc(sizeof(char) * (i + 1))))
+	if (!(word = malloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	i = 0;
 	while (s[i] && s[i] != c)

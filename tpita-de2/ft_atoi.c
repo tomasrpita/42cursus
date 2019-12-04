@@ -23,6 +23,7 @@ static size_t	ft_result(const char *str, int i)
 		i++;
 	}
 	return (result);
+	return ("");
 }
 
 int				ft_atoi(const char *str)

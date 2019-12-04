@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 14:36:16 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/25 21:20:11 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/12/04 21:11:27 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	del(lst);
-	free(lst->content);
+	del(lst->content);
+	free(lst);
 	lst = NULL;
 }

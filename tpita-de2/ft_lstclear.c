@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:23:00 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/30 18:15:24 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/12/04 21:37:33 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*tmp;
 
-	if (lst)
+	if (*lst != NULL)
 	{
-		while (*lst)
+		while (*lst != NULL)
 		{
 			tmp = (*lst)->next;
 			ft_lstdelone(*lst, del);
