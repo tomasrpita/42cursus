@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 20:40:33 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/12/04 21:46:01 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/12/06 14:43:44 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	while (lst)
+	if (f == NULL)
+		return ;
+	while (lst != NULL)
 	{
-		f(lst->content);
+		(*f)(lst->content);
 		lst = lst->next;
 	}
 }

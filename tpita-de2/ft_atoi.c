@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:44:50 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/11/22 18:39:21 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/12/06 12:02:32 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static size_t	ft_result(const char *str, int i)
 		i++;
 	}
 	return (result);
-	return ("");
 }
 
 int				ft_atoi(const char *str)
