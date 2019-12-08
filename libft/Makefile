@@ -6,7 +6,7 @@
 #    By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/14 05:56:57 by tomasrpita        #+#    #+#              #
-#    Updated: 2019/12/08 15:31:02 by tpita-de         ###   ########.fr        #
+#    Updated: 2019/12/08 18:28:11 by tpita-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,15 +22,16 @@ SRCS=ft_atoi.c  ft_isascii.c  ft_memcmp.c   ft_strdup.c  ft_strnstr.c \
 
 OBJETCS = $(SRCS:.c=.o)
 
-SRCS_BONUS = ft_lstadd_front_bonus.c ft_lstadd_back_bonus.c ft_lstclear_bonus.c ft_lstdelone_bonus.c \
-	ft_lstiter_bonus.c ft_lstlast_bonus.c ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c
+SRCS_BONUS = ft_lstadd_front_bonus.c  ft_lstadd_back_bonus.c  ft_lstclear_bonus.c  \
+			ft_lstdelone_bonus.c  ft_lstiter_bonus.c ft_lstlast_bonus.c \ 
+			ft_lstmap_bonus.c  ft_lstnew_bonus.c  ft_lstsize_bonus.c
 
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 INCLUDES = libft.h
 
 all: $(NAME)
 
-$(NAME): $(SRCS) libft.h
+$(NAME): $(SRCS)
 	@gcc -Wall -Wextra -Werror  -c $(SRCS) $(INCLUDES)
 	@ar rc $(NAME) $(OBJETCS)
 	@ranlib $(NAME)
