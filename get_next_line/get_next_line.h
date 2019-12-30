@@ -6,12 +6,12 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 13:01:22 by tpita-de          #+#    #+#             */
-/*   Updated: 2019/12/29 16:37:42 by tpita-de         ###   ########.fr       */
+/*   Updated: 2019/12/30 17:17:13 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 2
+# define BUFFER_SIZE 4
 #endif
 
 #ifndef GET_NEXT_LINE_H

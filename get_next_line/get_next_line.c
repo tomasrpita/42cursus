@@ -32,8 +32,13 @@ int get_next_line(int fd, char **line)
 	char        buf[BUFFER_SIZE + 1];
     ssize_t     mem_read;
     char        *p_n;
+    // char        *tmp;
 
     p_n = check_remainder(remainder, line);
+
+    if (read(fd, NULL, 0) < 0)
+     return (-1);
+    mem_read = 1; 
     while(!p_n && (mem_read = read(fd, buf, BUFFER_SIZE)))
     {
         buf[mem_read] = '\0';
@@ -45,5 +50,7 @@ int get_next_line(int fd, char **line)
         }
         *line = ft_strjoin_up(*line, buf);
     }
-	return ((mem_read || ft_strlen(remainder) || ft_strlen(*line)) ? 1 : 0);
+
+	return ((mem_read || (ft_strlen(*line) && ft_strlen(remainder))) ? 1 : 0);
 }
+
