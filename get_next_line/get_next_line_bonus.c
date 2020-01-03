@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <fcntl.h>
 
 static char *check_remainder(char *remainder, char **line)
@@ -35,7 +35,6 @@ int get_next_line(int fd, char **line)
     char        *tmp;
 
     p_n = check_remainder(remainder, line);
-
     if (read(fd, NULL, 0) < 0)
      return (-1);
     mem_read = 1; 
@@ -54,4 +53,26 @@ int get_next_line(int fd, char **line)
         free(tmp);
     }
 	return ((mem_read || (ft_strlen(*line) && ft_strlen(remainder))) ? 1 : 0);
+}
+
+int main ()
+{
+    int fd;
+    char *line;
+    int    i;
+    int j;
+    
+    line = 0;
+    j = 1;
+    fd = open("alphabet", O_RDONLY);
+    while ((i = get_next_line(fd, &line)) > 0)
+    {
+        printf("|%s\n", line);
+        ++j;
+    }
+    printf("|%s\n", line);
+    printf("%d", j);
+    free(line);
+    close(fd);
+    return (0);
 }
