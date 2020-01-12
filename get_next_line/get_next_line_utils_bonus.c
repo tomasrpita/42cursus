@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 13:00:17 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/01/06 17:46:22 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/01/12 15:36:08 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ char	*ft_strdup_and_ft_memset(char *s1, int flag)
 	}
 	if (flag)
 	{
-		i++;
 		while (i >= 0)
 		{
 			s1[i] = '\0';

@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 13:01:22 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/01/06 17:51:50 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/01/12 15:28:59 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static char		*ft_strjoin_up(char const *s1, char const *s2)
 		++i;
 	}
 	d[i] = '\0';
+	free((void *)s1);
 	return (d);
 }
 
@@ -69,7 +70,6 @@ static int		get_line(int fd, char **line, char **remainder)
 	char		buf[BUFFER_SIZE + 1];
 	ssize_t		mem_read;
 	char		*p_n;
-	char		*tmp;
 
 	p_n = check_remainder(*remainder, line);
 	mem_read = 1;
@@ -83,11 +83,11 @@ static int		get_line(int fd, char **line, char **remainder)
 			if (fd != 0)
 				*remainder = ft_strdup_and_ft_memset(p_n, 0);
 		}
-		tmp = *line;
 		if (!(*line = ft_strjoin_up(*line, buf)) || mem_read < 0)
 			return (-1);
-		free(tmp);
 	}
+	if (!mem_read)
+		return (0);
 	return ((mem_read || (ft_strlen(*line) && ft_strlen(*remainder))) ? 1 : 0);
 }
 
@@ -107,7 +107,7 @@ int				get_next_line(int fd, char **line)
 	static t_get_nl *head;
 	t_get_nl		*tmp;
 
-	if (read(fd, NULL, 0) < 0 || line == NULL)
+	if (read(fd, NULL, 0) < 0 || line == NULL || BUFFER_SIZE == 0)
 		return (-1);
 	if (head == NULL)
 		head = new_linked_list_el(fd);
