@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 13:01:22 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/01/06 17:37:13 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/01/25 17:12:22 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 typedef struct	s_get_next_line
 {
 	int						fd;
-	char					*remainder;
+	char					*remnant;
 	struct s_get_next_line	*next;
 }				t_get_nl;
 

@@ -6,14 +6,14 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 13:01:22 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/01/12 15:28:59 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/01/26 13:14:24 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
 #include <fcntl.h>
+#include "get_next_line_bonus.h"
 
-static char		*ft_strjoin_up(char const *s1, char const *s2)
+static char		*ft_strjoin_free(char const *s1, char const *s2)
 {
 	size_t	size1;
 	size_t	size2;
@@ -38,40 +38,40 @@ static char		*ft_strjoin_up(char const *s1, char const *s2)
 		++i;
 	}
 	d[i] = '\0';
-	free((void *)s1);
+	// free((void *)s1);
 	return (d);
 }
 
-static char		*check_remainder(char *remainder, char **line)
+static char		*check_remnant(char *remnant, char **line)
 {
 	char		*p_n;
 
 	p_n = NULL;
-	if (remainder)
+	if (remnant)
 	{
-		if ((p_n = ft_strchr(remainder, '\n')))
+		if ((p_n = ft_strchr(remnant, '\n')))
 		{
 			*p_n = '\0';
-			*line = ft_strdup_and_ft_memset(remainder, 0);
-			ft_strcpy(remainder, ++p_n);
+			*line = ft_strdup_and_ft_memset(remnant, 0);
+			ft_strcpy(remnant, ++p_n);
 		}
 		else
 		{
-			*line = ft_strdup_and_ft_memset(remainder, 1);
+			*line = ft_strdup_and_ft_memset(remnant, 1);
 		}
 	}
 	else
-		*line = ft_strdup_and_ft_memset("\0\0", 0);
+		*line = ft_strdup_and_ft_memset("", 0);
 	return (p_n);
 }
 
-static int		get_line(int fd, char **line, char **remainder)
+static int		get_line(int fd, char **line, char **remnant)
 {
 	char		buf[BUFFER_SIZE + 1];
 	ssize_t		mem_read;
 	char		*p_n;
 
-	p_n = check_remainder(*remainder, line);
+	p_n = check_remnant(*remnant, line);
 	mem_read = 1;
 	while (!p_n && (mem_read = read(fd, buf, BUFFER_SIZE)))
 	{
@@ -81,14 +81,14 @@ static int		get_line(int fd, char **line, char **remainder)
 			*p_n = '\0';
 			++p_n;
 			if (fd != 0)
-				*remainder = ft_strdup_and_ft_memset(p_n, 0);
+				*remnant = ft_strdup_and_ft_memset(p_n, 0);
 		}
-		if (!(*line = ft_strjoin_up(*line, buf)) || mem_read < 0)
+		if (!(*line = ft_strjoin_free(*line, buf)) || mem_read < 0)
 			return (-1);
 	}
 	if (!mem_read)
 		return (0);
-	return ((mem_read || (ft_strlen(*line) && ft_strlen(*remainder))) ? 1 : 0);
+	return ((mem_read || (ft_strlen(*line) && ft_strlen(*remnant))) ? 1 : 0);
 }
 
 static t_get_nl	*new_linked_list_el(int fd)
@@ -97,7 +97,7 @@ static t_get_nl	*new_linked_list_el(int fd)
 
 	new = (t_get_nl *)malloc(sizeof(t_get_nl));
 	new->fd = fd;
-	new->remainder = NULL;
+	new->remnant = NULL;
 	new->next = NULL;
 	return (new);
 }
@@ -107,7 +107,7 @@ int				get_next_line(int fd, char **line)
 	static t_get_nl *head;
 	t_get_nl		*tmp;
 
-	if (read(fd, NULL, 0) < 0 || line == NULL || BUFFER_SIZE == 0)
+	if (read(fd, NULL, 0) < 0 || line == NULL || BUFFER_SIZE < 1)
 		return (-1);
 	if (head == NULL)
 		head = new_linked_list_el(fd);
@@ -118,5 +118,7 @@ int				get_next_line(int fd, char **line)
 			tmp->next = new_linked_list_el(fd);
 		tmp = tmp->next;
 	}
-	return (get_line(tmp->fd, line, &tmp->remainder));
+	return (get_line(tmp->fd, line, &tmp->remnant));
 }
+
+

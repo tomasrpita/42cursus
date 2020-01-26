@@ -6,13 +6,14 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 13:01:22 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/01/12 15:24:55 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/01/26 15:22:02 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
 #include "get_next_line.h"
 
-static char		*ft_strjoin_up(char const *s1, char const *s2)
+static char		*ft_strjoin_free(char const *s1, char const *s2)
 {
 	size_t	size1;
 	size_t	size2;
@@ -41,54 +42,43 @@ static char		*ft_strjoin_up(char const *s1, char const *s2)
 	return (d);
 }
 
-static void		*ft_memset(void *b, int c, size_t len)
-{
-	char	*t_str;
-
-	t_str = b;
-	while (len)
-	{
-		*t_str = c;
-		t_str++;
-		len--;
-	}
-	return (b);
-}
-
-static char		*check_remainder(char *remainder, char **line)
+static char		*check_remnant(char *remnant, char **line)
 {
 	char	*p_n;
 
 	p_n = NULL;
-	if (remainder)
+	if (remnant)
 	{
-		if ((p_n = ft_strchr(remainder, '\n')))
+		if ((p_n = ft_strchr(remnant, '\n')))
 		{
 			*p_n = '\0';
-			*line = ft_strdup(remainder);
-			ft_strcpy(remainder, ++p_n);
+			*line = ft_strdup(remnant);
+			ft_strcpy(remnant, ++p_n);
 		}
 		else
 		{
-			*line = ft_strdup(remainder);
-			ft_memset(remainder, '\0', ft_strlen(remainder));
+			*line = ft_strdup(remnant);
+			// if (ft_strlen(remnant))
+			free(remnant);
+			remnant = NULL;
 		}
 	}
 	else
-		*line = ft_strdup("\0\0");
+		*line = ft_strdup("");
 	return (p_n);
 }
 
 int				get_next_line(int fd, char **line)
 {
-	static char	*remainder;
+	static char	*remnant;
 	char		buf[BUFFER_SIZE + 1];
 	ssize_t		mem_read;
 	char		*p_n;
 
-	if (read(fd, NULL, 0) < 0 || line == NULL || BUFFER_SIZE == 0)
+
+	if (read(fd, NULL, 0) < 0 || line == NULL || BUFFER_SIZE < 1)
 		return (-1);
-	p_n = check_remainder(remainder, line);
+	p_n = check_remnant(remnant, line);
 	mem_read = 1;
 	while (!p_n && (mem_read = read(fd, buf, BUFFER_SIZE)))
 	{
@@ -97,12 +87,34 @@ int				get_next_line(int fd, char **line)
 		{
 			*p_n = '\0';
 			++p_n;
-			if (fd != 0)
-				remainder = ft_strdup(p_n);
+			remnant = ft_strdup(p_n);
 		}
-		*line = ft_strjoin_up(*line, buf);
+		*line = ft_strjoin_free(*line, buf);
 	}
 	if (!mem_read)
 		return (0);
-	return ((mem_read || (ft_strlen(*line) && ft_strlen(remainder))) ? 1 : 0);
+	return ((mem_read || (ft_strlen(*line) && ft_strlen(remnant))) ? 1 : 0);
 }
+
+// int        main(void)
+// {
+//     char    *line;
+//     int        fd;
+//     // int        return_value;
+//     int        num_lineas;
+
+//     num_lineas = 1;
+//     fd = open("alphabet", O_RDONLY);
+//     while ((get_next_line(fd, &line)) == 1)
+//     {
+//         printf("%s\n", line);
+//         free(line);
+//         ++num_lineas;
+//     }
+// 	printf("%s\n", line);
+//     free(line);
+//     printf("Numero de lineas: %d", num_lineas);
+//     close(fd);
+
+
+// }
