@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.c                                      :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 19:30:45 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/02/09 14:36:19 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/02/16 15:15:35 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Para poder usar el printf de prueba */
 #include <stdio.h>
-#include "libft/libft.h"
-#include <stdarg.h>
 #include <unistd.h>
+#include "libftprintf.h"
 
 int	static ft_putnbr_fd2(int n, int fd)
 {
@@ -76,6 +75,35 @@ static int write_ptr(void *p) {
 	return (i - j);
 }
 
+static int     write_hex(int n, int flag_x)
+{
+
+    int quotient;
+    int remainder;
+    int i;
+    int j;
+	int caseU;
+    char hex[100];
+
+    quotient = n;
+    j = 0;
+    i = 0;
+	caseU = flag_x ? 55: 87;
+    while (quotient != 0)
+    {
+        remainder = quotient % 16;
+        if (remainder < 10)
+            hex[j++] = 48 + remainder;
+        else
+            hex[j++] = caseU + remainder;
+        quotient = quotient / 16;
+    }
+	i = j - 1;
+	while (i >= 0)
+		ft_putchar_fd(hex[i--], 1);
+	return j;
+}
+
 int ft_printf(const char *format, ...)
 {
 	va_list			valist;
@@ -83,8 +111,13 @@ int ft_printf(const char *format, ...)
 	int				character;
 	char			*string;
 	void			*pointer;
-	// /* diuXX */
+	/* di falta uxX */
 	int				integer;
+
+	if (format == NULL)
+		return (-1);
+	if (*format == '\0')
+		return (0);
 
 	lenght = 0;
 	va_start(valist, format);
@@ -111,10 +144,20 @@ int ft_printf(const char *format, ...)
 				lenght += write_ptr(pointer);
 
 			}
-			else if (*format == 'd')
+			else if (*format == 'd' || *format == 'i')
 			{
 				integer = va_arg(valist, int);
 				lenght += ft_putnbr_fd2(integer, 1);
+			}
+			else if (*format == 'x')
+			{
+				integer = va_arg(valist, int);
+				lenght += write_hex(integer, 0);
+			}
+			else if (*format == 'X')
+			{
+				integer = va_arg(valist, int);
+				lenght += write_hex(integer, 1);
 			}
 			else if (*format == '%')
 				ft_putchar_fd(*format, 1);
@@ -143,15 +186,36 @@ int main()
 	void	*p;
 
 
+	// length = ft_printf("ft_printf: %", );
 	p = &str;
 	length = ft_printf("Hola quee tal %s %s %%, caracter: %c,\tpuntero: %p, numero negativo:%d\n", str, "problema", 'T', p, -400);
-	length2 = printf("Hola quee tal %s %s %%, caracter: %c,\tpuntero: %p, numero negativo:%d\n", str, "problema", 'T', p, -400);
-	printf("length ft_printf: %d\n", length);
-	ft_printf("length printf: %d\n", length2);
+	length2 = printf("Hola quee tal %s %s %%, caracter: %c,\tpuntero: %p, numero negativo:%u\n", str, "problema", 'T', p, -400);
 
-	printf("\nImprimiendo numeros\n");
+	ft_printf("length printf: %i\n", length2);
+	printf("length ft_printf: %i\n", length);
+
+	printf("\nImprimiendo numeros Hexadecimales\n");
+	length = length2 = 0;
 
 
+
+	length = ft_printf("hexadecimal %X\n", 20586741);
+	length2 = printf("hexadecimal %X\n",   20586741);
+
+
+	ft_printf("length ft_printf: %i\n", length2);
+	printf("length printf: %i\n", length);
+
+
+	printf("\nImprimiendo numeros Unsigned\n");
+	length = length2 = 0;
+
+	// length = ft_printf("unsigned %X\n", 20586741);
+	length2 = printf("unsigned %u\n",   1);
+
+
+	ft_printf("length ft_printf: %i\n", length2);
+	printf("length printf: %i\n", length);
 	return (length);
 
 
