@@ -3,122 +3,109 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 13:01:22 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/01/26 13:14:24 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/05/10 18:14:49 by tomasrpita       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
 #include "get_next_line_bonus.h"
 
-static char		*ft_strjoin_free(char const *s1, char const *s2)
+static t_gnl	*new_node(int fd)
 {
-	size_t	size1;
-	size_t	size2;
-	char	*d;
-	size_t	i;
+	t_gnl		*new;
 
-	if (!s2 || !s1)
+	if (!(new = (t_gnl *)malloc(sizeof(t_gnl))))
 		return (NULL);
-	size1 = ft_strlen(s1);
-	size2 = ft_strlen(s2);
-	if (!(d = (char *)malloc((size1 + size2 + 1) * sizeof(char))))
-		return (NULL);
-	i = 0;
-	while (i < size1)
-	{
-		d[i] = s1[i];
-		++i;
-	}
-	while (i < (size2 + size1))
-	{
-		d[i] = s2[i - size1];
-		++i;
-	}
-	d[i] = '\0';
-	// free((void *)s1);
-	return (d);
+	*new = (t_gnl){ .fd = fd, .eof = 0, .next = NULL};
+	if (!(new->remnant = str_join("", "", 0)))
+		free(new);
+	return (!(new->remnant) ? NULL : new);
 }
 
-static char		*check_remnant(char *remnant, char **line)
+static int		del_node(t_gnl **fnode, int fd)
 {
-	char		*p_n;
+	t_gnl **x;
+	t_gnl *z;
 
-	p_n = NULL;
-	if (remnant)
+	x = fnode;
+	while (*x && (*x)->fd != fd)
+		x = &(*x)->next;
+	if (*x)
 	{
-		if ((p_n = ft_strchr(remnant, '\n')))
-		{
-			*p_n = '\0';
-			*line = ft_strdup_and_ft_memset(remnant, 0);
-			ft_strcpy(remnant, ++p_n);
-		}
-		else
-		{
-			*line = ft_strdup_and_ft_memset(remnant, 1);
-		}
+		z = *x;
+		*x = z->next;
+		free(z->remnant);
+		free(z);
 	}
-	else
-		*line = ft_strdup_and_ft_memset("", 0);
-	return (p_n);
+	return (0);
 }
 
-static int		get_line(int fd, char **line, char **remnant)
+static int		read_line(t_gnl *an)
 {
-	char		buf[BUFFER_SIZE + 1];
-	ssize_t		mem_read;
-	char		*p_n;
+	int		ret;
+	int		i;
+	int		j;
+	char	buffer[BUFFER_SIZE + 1];
 
-	p_n = check_remnant(*remnant, line);
-	mem_read = 1;
-	while (!p_n && (mem_read = read(fd, buf, BUFFER_SIZE)))
+	j = 0;
+	while (an->remnant && an->remnant[j] && an->remnant[j] != '\n')
+		j++;
+	if (an->remnant && (an->remnant[j] == '\n'))
+		return (j);
+	while ((ret = read(an->fd, buffer, BUFFER_SIZE)) > 0)
 	{
-		buf[mem_read] = '\0';
-		if ((p_n = ft_strchr(buf, '\n')))
-		{
-			*p_n = '\0';
-			++p_n;
-			if (fd != 0)
-				*remnant = ft_strdup_and_ft_memset(p_n, 0);
-		}
-		if (!(*line = ft_strjoin_free(*line, buf)) || mem_read < 0)
+		buffer[ret] = 0;
+		if (!(an->remnant = str_join(an->remnant, buffer, an->remnant)))
 			return (-1);
+		i = -1;
+		while (++i < ret)
+			if (buffer[i] == '\n')
+				return (j + i);
+		j += ret;
 	}
-	if (!mem_read)
-		return (0);
-	return ((mem_read || (ft_strlen(*line) && ft_strlen(*remnant))) ? 1 : 0);
+	if (ret == 0 && an && an->remnant && an->remnant[j] == 0)
+		an->eof = 1;
+	return (ret == -1 ? -1 : j);
 }
 
-static t_get_nl	*new_linked_list_el(int fd)
+static t_gnl	*get_fd(t_gnl **hnode, int fd)
 {
-	t_get_nl		*new;
+	t_gnl	*an;
 
-	new = (t_get_nl *)malloc(sizeof(t_get_nl));
-	new->fd = fd;
-	new->remnant = NULL;
-	new->next = NULL;
-	return (new);
+	an = *hnode;
+	while ((an && !(an->fd == fd)))
+	{
+		if (an->next == NULL)
+		{
+			if (!(an->next = new_node(fd)))
+				return (NULL);
+		}
+		an = an->next;
+	}
+	return (an);
 }
 
 int				get_next_line(int fd, char **line)
 {
-	static t_get_nl *head;
-	t_get_nl		*tmp;
+	static t_gnl	*hnode;
+	t_gnl			*an;
+	int				index;
 
-	if (read(fd, NULL, 0) < 0 || line == NULL || BUFFER_SIZE < 1)
+	if (!line || fd < 0 || BUFFER_SIZE <= 0)
 		return (-1);
-	if (head == NULL)
-		head = new_linked_list_el(fd);
-	tmp = head;
-	while (tmp->fd != fd)
+	if (!hnode)
 	{
-		if (tmp->next == NULL)
-			tmp->next = new_linked_list_el(fd);
-		tmp = tmp->next;
+		if (!(hnode = new_node(fd)))
+			return (-1);
 	}
-	return (get_line(tmp->fd, line, &tmp->remnant));
+	if (!(an = get_fd(&hnode, fd)))
+		return (-1);
+	index = read_line(an);
+	if (index == -1 || !(*line = sub_str(an->remnant, 0, index)) || an->eof)
+		return ((del_node(&hnode, fd) || 1) * (!*line || index == -1 ? -1 : 0));
+	if (!(an->remnant = str_join(an->remnant + index + 1, "", an->remnant)))
+		return ((del_node(&hnode, fd) || 1) * -1);
+	return (1);
 }
-
-

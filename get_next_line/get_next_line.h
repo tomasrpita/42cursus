@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 13:01:22 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/01/26 13:40:30 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/05/10 18:17:01 by tomasrpita       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,22 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 42
 # endif
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
-int		get_next_line(int fd, char **line);
-size_t	ft_strlen(const char *s);
-void	*ft_calloc(size_t count, size_t size);
-char	*ft_strdup(const char *s1);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strcpy(char *dest, char *src);
+typedef	struct	s_gnl
+{
+	int				fd;
+	int				eof;
+	char			*remnant;
+	struct s_gnl	*next;
+}				t_gnl;
+
+int				get_next_line(int fd, char **line);
+char			*str_join(char *str1, char *str2, char *str_free);
+char			*sub_str(char const *s, unsigned int start, size_t len);
 
 #endif
