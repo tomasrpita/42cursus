@@ -6,7 +6,7 @@
 /*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 13:01:22 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/05/10 18:31:17 by tomasrpita       ###   ########.fr       */
+/*   Updated: 2020/05/11 19:48:07 by tomasrpita       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/types.h>
+# include <sys/uio.h>
 
 typedef	struct	s_gnl
 {

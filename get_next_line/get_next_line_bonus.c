@@ -6,7 +6,7 @@
 /*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 13:01:22 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/05/10 18:14:49 by tomasrpita       ###   ########.fr       */
+/*   Updated: 2020/05/11 19:52:39 by tomasrpita       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,23 @@ static t_gnl	*new_node(int fd)
 	if (!(new->remnant = str_join("", "", 0)))
 		free(new);
 	return (!(new->remnant) ? NULL : new);
+}
+
+static t_gnl	*get_node(t_gnl **hnode, int fd)
+{
+	t_gnl	*an;
+
+	an = *hnode;
+	while ((an && !(an->fd == fd)))
+	{
+		if (an->next == NULL)
+		{
+			if (!(an->next = new_node(fd)))
+				return (NULL);
+		}
+		an = an->next;
+	}
+	return (an);
 }
 
 static int		del_node(t_gnl **fnode, int fd)
@@ -70,23 +87,6 @@ static int		read_line(t_gnl *an)
 	return (ret == -1 ? -1 : j);
 }
 
-static t_gnl	*get_fd(t_gnl **hnode, int fd)
-{
-	t_gnl	*an;
-
-	an = *hnode;
-	while ((an && !(an->fd == fd)))
-	{
-		if (an->next == NULL)
-		{
-			if (!(an->next = new_node(fd)))
-				return (NULL);
-		}
-		an = an->next;
-	}
-	return (an);
-}
-
 int				get_next_line(int fd, char **line)
 {
 	static t_gnl	*hnode;
@@ -100,7 +100,7 @@ int				get_next_line(int fd, char **line)
 		if (!(hnode = new_node(fd)))
 			return (-1);
 	}
-	if (!(an = get_fd(&hnode, fd)))
+	if (!(an = get_node(&hnode, fd)))
 		return (-1);
 	index = read_line(an);
 	if (index == -1 || !(*line = sub_str(an->remnant, 0, index)) || an->eof)
