@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/28 11:41:28 by tomasrpita        #+#    #+#             */
-/*   Updated: 2020/05/10 18:04:38 by tomasrpita       ###   ########.fr       */
+/*   Created: 2019/12/28 11:41:28 by tpita-de          #+#    #+#             */
+/*   Updated: 2020/05/11 19:53:50 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
