@@ -1,7 +1,7 @@
 #ifndef FT_PRINTF_H
  # define FT_PRINTF_H
 
-// Recuerda colocar esto donde debe ir
+// TODO Recuerda colocar esto donde debe ir
  # include "../libft/libft.h"
  # include <stdarg.h>
  # include <stdint.h> // punteros uintptr_t

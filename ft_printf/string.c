@@ -9,7 +9,7 @@ static void	print_string_la(char *str, t_ftpf *f)
 		str = "(null)";
 	strlen = ft_strlen(str);
 	// Este pudiese ser el salvador
-	// Presicion en str cuanto voy a imprimir de esa cadena
+	// Precision en str cuanto voy a imprimir de esa cadena
 	if (f->dot && strlen > 0 && strlen > f->precision)
 		strlen = f->precision;
 	f->len += write(1, str, strlen);
