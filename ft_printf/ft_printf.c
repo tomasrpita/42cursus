@@ -1,13 +1,12 @@
 #include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 static t_ftpf *init_struc(t_ftpf *f)
 {
 	if (!(f = (t_ftpf*)malloc(sizeof(t_ftpf))))
 		return (NULL);
-	// usar la de gnl para inicializar esto
-	f->idx = 0;
-	f->len = 0;
+	*f = (t_ftpf){ .idx = 0, .len = 0,};
 	return (f);
 }
 
@@ -27,9 +26,6 @@ static void check_flags(const char *format, t_ftpf *f)
 
 static void check_width(const char *format, t_ftpf *f, va_list ap)
 {
-	// Borrame
-	char c;
-	c = format[f->idx];
 	if (format[f->idx] == '*')
 	{
 		f->width = va_arg(ap, int);
@@ -106,15 +102,14 @@ static void print_type(const char *format, t_ftpf *f, va_list ap)
 	else if (format[f->idx] == 'd' || format[f->idx] == 'i')
 		print_decimal(f, ap);
 	else if (format[f->idx] == 'u')
-		; // print_unsigned
+		print_unsigned(f, ap);
 	else if (format[f->idx] == 'x' || format[f->idx] == 'X')
 		print_hexadecimal(f, ap, format[f->idx]);
-	else if (format[f->idx] == '%'){
-		; //
-	}
+	else
+		print_percent(f);
 }
 
-void reset_struct(t_ftpf *f )
+static void reset_struct(t_ftpf *f )
 {
 	f->fzero = 0;
 	f->fminus = 0;
@@ -125,19 +120,16 @@ void reset_struct(t_ftpf *f )
 
 static void process_format(const char *format, t_ftpf *f, va_list ap)
 {
-	// != /0
 	while (format[f->idx])
 	{
 		if (format[f->idx] == '%')
 		{
 			f->idx++;
-			// tienes dos veces 0
 			if (ft_strchr("-.*0123456789", format[f->idx]))
 				parse_modifiers(format, f, ap);
 			if (ft_strchr("cspdiuxX%", format[f->idx]))
 			{
 				print_type(format, f, ap);
-				// Si se produce un error escribiendo
 				if (f->len == -1)
 					return ;
 				reset_struct(f);
@@ -146,9 +138,7 @@ static void process_format(const char *format, t_ftpf *f, va_list ap)
 		else
 			f->len += write(1, &format[f->idx], 1);
 		f->idx++;
-
 	}
-
 }
 
 int ft_printf(const char *format, ...)
@@ -161,9 +151,8 @@ int ft_printf(const char *format, ...)
 	if(!(f = init_struc(f)))
 		return (-1);
 	va_start(ap, format);
-	//Comprobar si hace falta esta comprobación
 	if (format[0] == '%' && format[1] == '\0')
-		;
+	 	return (-1);
 	else if (!ft_strchr(format, '%'))
 		f->len += write(1, format,ft_strlen(format));
 	else
@@ -228,11 +217,29 @@ int main()
 	// len = printf("%*p\n", 1, &entero);
 	// printf("%d\n", len);
 
-	printf("Puntero: %%p\n");
-	len = ft_printf("%x\n", 16417188);
-	printf("%d\n", len);
-	len = printf("%x\n", 16417188);
-	printf("%d\n", len);
+	// printf("Puntero: %%p\n");
+	// len = ft_printf("%x\n", 16417188);
+	// printf("%d\n", len);
+	// len = printf("%x\n", 16417188);
+	// printf("%d\n", len);
+
+	// printf("unsigned: %%u\n");
+	// len = ft_printf("%u\n", UINT_MAX);
+	// printf("%d\n", len);
+	// len = printf("%u\n", UINT_MAX);
+	// printf("%d\n", len);
+
+	// printf("unsigned: %%u\n");
+	// len = ft_printf("%u\n", -42);
+	// printf("%d\n", len);
+	// len = printf("%u\n", -42);
+	// printf("%d\n", len);
+
+	// printf("sing: %%\n");
+	// len = ft_printf("%");
+	// printf("%d\n", len);
+	// len = printf("%");
+	// printf("%d\n", len);
 
 	return (0);
 }
