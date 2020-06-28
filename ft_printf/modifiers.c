@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   modifiers.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/28 12:57:10 by tpita-de          #+#    #+#             */
+/*   Updated: 2020/06/28 14:01:51 by tpita-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void check_flags(const char *format, t_ftpf *f)
+static void	check_flags(const char *format, t_ftpf *f)
 {
 	while (ft_strchr("0-", format[f->idx]))
 	{
@@ -15,13 +26,13 @@ static void check_flags(const char *format, t_ftpf *f)
 		f->fzero = 0;
 }
 
-static void check_width(const char *format, t_ftpf *f, va_list ap)
+static void	check_width(const char *format, t_ftpf *f, va_list ap)
 {
 	if (format[f->idx] == '*')
 	{
 		f->width = va_arg(ap, int);
-		f->fminus = (f->width < 0)  ? 1 : f->fminus;
-		f->width = (f->width < 0)  ? -f->width : f->width;
+		f->fminus = (f->width < 0) ? 1 : f->fminus;
+		f->width = (f->width < 0) ? -f->width : f->width;
 		while (format[f->idx] == '*')
 			f->idx++;
 	}
@@ -34,7 +45,7 @@ static void check_width(const char *format, t_ftpf *f, va_list ap)
 			if (format[f->idx] == '*')
 			{
 				f->width = va_arg(ap, int);
-				f->width = (f->width < 0)  ? -f->width : f->width;
+				f->width = (f->width < 0) ? -f->width : f->width;
 				while (format[f->idx] == '*')
 					f->idx++;
 			}
@@ -42,7 +53,7 @@ static void check_width(const char *format, t_ftpf *f, va_list ap)
 	}
 }
 
-static void check_precision(const char *format, t_ftpf *f, va_list ap)
+static void	check_precision(const char *format, t_ftpf *f, va_list ap)
 {
 	int precision;
 
@@ -69,7 +80,7 @@ static void check_precision(const char *format, t_ftpf *f, va_list ap)
 	}
 }
 
-void	parse_modifiers(const char *format, t_ftpf *f, va_list ap)
+void		parse_modifiers(const char *format, t_ftpf *f, va_list ap)
 {
 	if (format[f->idx] == '0' || format[f->idx] == '-')
 		check_flags(format, f);

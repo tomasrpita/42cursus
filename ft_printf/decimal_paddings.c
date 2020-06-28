@@ -1,44 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   percent_sing.c                                     :+:      :+:    :+:   */
+/*   decimal_paddings.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/28 12:55:54 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/06/28 12:56:46 by tpita-de         ###   ########.fr       */
+/*   Created: 2020/06/28 13:49:55 by tpita-de          #+#    #+#             */
+/*   Updated: 2020/06/28 13:58:33 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	print_percent_la(t_ftpf *f)
+void	decimal_padding_la(int numlen, t_ftpf *f)
 {
-	f->len += write(1, "%", 1);
-	while (f->width > 1)
+	while (f->width >= numlen)
 	{
 		f->len += write(1, " ", 1);
 		f->width--;
 	}
 }
 
-static void	print_percent_ra(t_ftpf *f)
+void	decimal_padding_ra(int numlen, int negative, t_ftpf *f)
 {
-	while (f->width > 1)
-	{
-		if (f->fzero)
-			f->len += write(1, "0", 1);
-		else
-			f->len += write(1, " ", 1);
-		f->width--;
-	}
-	f->len += write(1, "%", 1);
-}
-
-void		print_percent(t_ftpf *f)
-{
-	if (f->fminus)
-		print_percent_la(f);
+	if (!f->dot)
+		while (f->width-- > numlen)
+		{
+			if (f->fzero)
+				f->len += write(1, "0", 1);
+			else
+				f->len += write(1, " ", 1);
+		}
 	else
-		print_percent_ra(f);
+	{
+		while (f->width-- > f->precision)
+		{
+			if ((f->fzero && f->width != f->precision) || negative == 1)
+				f->len += write(1, "0", 1);
+			else
+				f->len += write(1, " ", 1);
+		}
+	}
 }

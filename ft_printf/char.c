@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   char.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/28 13:02:57 by tpita-de          #+#    #+#             */
+/*   Updated: 2020/06/28 13:03:28 by tpita-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-
-
 
 static void	print_char_la(unsigned char c, t_ftpf *f)
 {
@@ -11,7 +21,6 @@ static void	print_char_la(unsigned char c, t_ftpf *f)
 		f->width--;
 	}
 }
-
 
 static void	print_char_ra(unsigned char c, t_ftpf *f)
 {
@@ -26,8 +35,6 @@ static void	print_char_ra(unsigned char c, t_ftpf *f)
 	f->len += write(1, &c, 1);
 }
 
-
-
 void		print_char(t_ftpf *f, va_list ap)
 {
 	unsigned char c;
@@ -37,5 +44,4 @@ void		print_char(t_ftpf *f, va_list ap)
 		print_char_la(c, f);
 	else
 		print_char_ra(c, f);
-
 }

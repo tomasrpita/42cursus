@@ -1,5 +1,16 @@
-#include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unsigned.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/28 12:50:11 by tpita-de          #+#    #+#             */
+/*   Updated: 2020/06/28 12:50:35 by tpita-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "ft_printf.h"
 
 static void	ft_padding(int numlen, t_ftpf *f)
 {
@@ -23,7 +34,6 @@ static void	ft_padding(int numlen, t_ftpf *f)
 			}
 	}
 }
-
 
 static void	print_unsigned_la(intmax_t num, t_ftpf *f)
 {
@@ -68,7 +78,6 @@ static void	print_unsigned_ra(uintmax_t num, t_ftpf *f)
 		f->len += write(1, "0", 1);
 	f->len += ft_uitoa_base_pf(num, 10, 0);
 }
-
 
 void		print_unsigned(t_ftpf *f, va_list ap)
 {

@@ -1,39 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   decimal.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/28 13:55:46 by tpita-de          #+#    #+#             */
+/*   Updated: 2020/06/28 13:57:41 by tpita-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static void	padding_left_align(int numlen, t_ftpf *f)
-{
-	while (f->width >= numlen)
-	{
-		f->len += write(1, " ", 1);
-		f->width--;
-	}
-}
-
-
-static	void padding_right_align(int numlen, int negative, t_ftpf *f)
-{
-	if (!f->dot)
-		while (f->width-- > numlen)
-		{
-			if (f->fzero)
-				f->len += write(1, "0", 1);
-			else
-				f->len += write(1, " ", 1);
-		}
-	else
-	{
-		while (f->width-- > f->precision)
-		{
-			if ((f->fzero && f->width != f->precision) || negative == 1)
-				f->len += write(1, "0", 1);
-			else
-				f->len += write(1, " ", 1);
-		}
-	}
-}
-
-
-static int print_decimal_la2(long int num, t_ftpf *f)
+static int	print_decimal_la2(long int num, t_ftpf *f)
 {
 	if (num == 0 && f->dot && !f->precision)
 	{
@@ -42,12 +21,12 @@ static int print_decimal_la2(long int num, t_ftpf *f)
 			f->len += write(1, " ", 1);
 			f->width--;
 		}
-		return(1);
+		return (1);
 	}
-	return(0);
+	return (0);
 }
 
-static int print_decimal_ra2(long int num, t_ftpf *f, int negative)
+static int	print_decimal_ra2(long int num, t_ftpf *f, int negative)
 {
 	if (num == 0 && f->dot && !f->precision)
 	{
@@ -56,14 +35,14 @@ static int print_decimal_ra2(long int num, t_ftpf *f, int negative)
 			f->len += write(1, " ", 1);
 			f->width--;
 		}
-		return(1);
+		return (1);
 	}
 	if (negative == 1 && f->fzero)
 		f->len += write(1, "-", 1);
-	return(0);
+	return (0);
 }
 
-static void print_decimal_la(long int num, t_ftpf *f)
+static void	print_decimal_la(long int num, t_ftpf *f)
 {
 	int numlen;
 	int negative;
@@ -77,16 +56,15 @@ static void print_decimal_la(long int num, t_ftpf *f)
 	{
 		f->len += write(1, "-", 1);
 		numlen--;
-		// donde se inicializo width?
 		f->width--;
 	}
 	while (numlen++ < f->precision)
 		f->len += write(1, "0", 1);
 	f->len += ft_itoa_base_pf(num, 10);
-	padding_left_align(numlen, f);
+	decimal_padding_la(numlen, f);
 }
 
-static void print_decimal_ra(long int num, t_ftpf *f)
+static void	print_decimal_ra(long int num, t_ftpf *f)
 {
 	int numlen;
 	int negative;
@@ -96,7 +74,7 @@ static void print_decimal_ra(long int num, t_ftpf *f)
 	num = (num < 0) ? -num : num;
 	if (print_decimal_ra2(num, f, negative))
 		return ;
-	padding_right_align(numlen, negative, f);
+	decimal_padding_ra(numlen, negative, f);
 	if (!f->fzero && negative == 1)
 	{
 		f->len += write(1, "-", 1);
@@ -108,9 +86,8 @@ static void print_decimal_ra(long int num, t_ftpf *f)
 	f->len += ft_itoa_base_pf(num, 10);
 }
 
-void print_decimal(t_ftpf *f, va_list ap)
+void		print_decimal(t_ftpf *f, va_list ap)
 {
-
 	long int	num;
 
 	num = va_arg(ap, int);

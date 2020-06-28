@@ -1,5 +1,16 @@
-#include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/28 12:51:22 by tpita-de          #+#    #+#             */
+/*   Updated: 2020/06/28 12:53:28 by tpita-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "ft_printf.h"
 
 static void	print_string_la(char *str, t_ftpf *f)
 {
@@ -8,8 +19,6 @@ static void	print_string_la(char *str, t_ftpf *f)
 	if (!str)
 		str = "(null)";
 	strlen = ft_strlen(str);
-	// Este pudiese ser el salvador
-	// Precision en str cuanto voy a imprimir de esa cadena
 	if (f->dot && strlen > 0 && strlen > f->precision)
 		strlen = f->precision;
 	f->len += write(1, str, strlen);
@@ -19,7 +28,6 @@ static void	print_string_la(char *str, t_ftpf *f)
 		f->width--;
 	}
 }
-
 
 static void	print_string_ra(char *str, t_ftpf *f)
 {
@@ -41,14 +49,13 @@ static void	print_string_ra(char *str, t_ftpf *f)
 	f->len += write(1, str, strlen);
 }
 
-
-void		print_string(t_ftpf  *f, va_list ap)
+void		print_string(t_ftpf *f, va_list ap)
 {
-		char *str;
+	char *str;
 
-		str = va_arg(ap, char *);
-		if (f->fminus)
-			print_string_la(str, f);
-		else
-			print_string_ra(str, f);
+	str = va_arg(ap, char *);
+	if (f->fminus)
+		print_string_la(str, f);
+	else
+		print_string_ra(str, f);
 }

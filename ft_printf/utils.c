@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/28 12:45:50 by tpita-de          #+#    #+#             */
+/*   Updated: 2020/06/28 12:48:59 by tpita-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int ft_signed_numlen(long int num, int base)
+int		ft_signed_numlen(long int num, int base)
 {
-	int i;
+	int			i;
 
 	i = 0;
 	if (num == 0)
 		return (1);
 	if (num < -9223372036854775807)
-		return 20;
+		return (20);
 	if (num < 0)
 	{
 		i++;
@@ -22,10 +34,9 @@ int ft_signed_numlen(long int num, int base)
 	return (i);
 }
 
-
 int		ft_unsigned_numlen(uintmax_t num, int base)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	if (num == 0)
@@ -38,8 +49,7 @@ int		ft_unsigned_numlen(uintmax_t num, int base)
 	return (i);
 }
 
-
-int	ft_itoa_base_pf(long int num, int base)
+int		ft_itoa_base_pf(long int num, int base)
 {
 	int			len;
 	long int	num2;
@@ -68,8 +78,7 @@ int	ft_itoa_base_pf(long int num, int base)
 	return (len);
 }
 
-
-int			ft_uitoa_base_pf(uintmax_t num, int base, char x)
+int		ft_uitoa_base_pf(uintmax_t num, int base, char x)
 {
 	int			len;
 	uintmax_t	num2;

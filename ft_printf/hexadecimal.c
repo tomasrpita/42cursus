@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hexadecimal.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/28 12:57:53 by tpita-de          #+#    #+#             */
+/*   Updated: 2020/06/28 12:59:02 by tpita-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static void	print_hex_la(intmax_t num, t_ftpf *f, char casetp)
@@ -44,6 +56,7 @@ static void	print_padding(int num, t_ftpf *f)
 		}
 	}
 }
+
 static void	print_hex_ra(uintmax_t num, t_ftpf *f, char casetp)
 {
 	int numlen;
@@ -64,15 +77,13 @@ static void	print_hex_ra(uintmax_t num, t_ftpf *f, char casetp)
 	f->len += ft_uitoa_base_pf(num, 16, casetp);
 }
 
-void print_hexadecimal(t_ftpf *f, va_list ap, char casetp)
+void		print_hexadecimal(t_ftpf *f, va_list ap, char casetp)
 {
 	uintmax_t num;
 
 	num = va_arg(ap, unsigned int);
-
 	if (f->fminus)
 		print_hex_la(num, f, casetp);
 	else
 		print_hex_ra(num, f, casetp);
-
 }

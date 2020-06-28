@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pointer.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/28 12:54:07 by tpita-de          #+#    #+#             */
+/*   Updated: 2020/06/28 12:55:36 by tpita-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static void		print_pointer_la(intmax_t num, t_ftpf *f)
+static void	print_pointer_la(intmax_t num, t_ftpf *f)
 {
 	int numlen;
 
@@ -20,7 +32,6 @@ static void		print_pointer_la(intmax_t num, t_ftpf *f)
 		f->width--;
 	}
 }
-
 
 static void	print_pointer_ra(uintmax_t num, t_ftpf *f)
 {
@@ -43,18 +54,13 @@ static void	print_pointer_ra(uintmax_t num, t_ftpf *f)
 	f->len += ft_uitoa_base_pf(num, 16, 0);
 }
 
-
-void			print_pointer(t_ftpf  *f, va_list ap)
+void		print_pointer(t_ftpf *f, va_list ap)
 {
-
 	uintmax_t	num;
 
 	num = (long long)va_arg(ap, void *);
-
 	if (f->fminus)
 		print_pointer_la(num, f);
 	else
 		print_pointer_ra(num, f);
-
 }
-
