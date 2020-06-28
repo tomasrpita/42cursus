@@ -24,6 +24,7 @@ int 				ft_signed_numlen(long int num, int base);
 int					ft_unsigned_numlen(uintmax_t value, int base);
 int					ft_itoa_base_pf(long int value, int base);
 int					ft_uitoa_base_pf(uintmax_t value, int base, char x);
+void				parse_modifiers(const char *format, t_ftpf *f, va_list ap);
 void 				print_decimal(t_ftpf *f, va_list ap);
 void				print_char(t_ftpf *f, va_list ap);
 void				print_string(t_ftpf  *f, va_list ap);

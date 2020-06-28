@@ -39,7 +39,6 @@ int		ft_unsigned_numlen(uintmax_t num, int base)
 }
 
 
-// Reescribir a la tomasina, interpretar
 int	ft_itoa_base_pf(long int num, int base)
 {
 	int			len;
