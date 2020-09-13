@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 13:55:46 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/06/28 13:57:41 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/09/11 08:40:20 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	print_decimal_la2(long int num, t_ftpf *f)
 	return (0);
 }
 
-static int	print_decimal_ra2(long int num, t_ftpf *f, int negative)
+static int	print_decimal_ra2(long int num, t_ftpf *f, int *neg, int *numlen)
 {
 	if (num == 0 && f->dot && !f->precision)
 	{
@@ -37,8 +37,12 @@ static int	print_decimal_ra2(long int num, t_ftpf *f, int negative)
 		}
 		return (1);
 	}
-	if (negative == 1 && f->fzero)
+	if (*neg == 1 && f->fzero && !f->dot)
+	{
 		f->len += write(1, "-", 1);
+		*neg = 0;
+		numlen--;
+	}
 	return (0);
 }
 
@@ -69,18 +73,18 @@ static void	print_decimal_ra(long int num, t_ftpf *f)
 	int numlen;
 	int negative;
 
-	numlen = ft_signed_numlen(num, 10);
 	negative = (num < 0) ? 1 : 0;
+	numlen = ft_signed_numlen(num, 10);
 	num = (num < 0) ? -num : num;
-	if (print_decimal_ra2(num, f, negative))
+	if (print_decimal_ra2(num, f, &negative, &numlen))
 		return ;
 	decimal_padding_ra(numlen, negative, f);
-	if (!f->fzero && negative == 1)
+	if (negative == 1)
 	{
 		f->len += write(1, "-", 1);
 		numlen--;
 	}
-	f->precision = (f->width > f->precision) ? f->width : f->precision;
+	f->precision = f->width > f->precision ? f->width : f->precision;
 	while (numlen++ < f->precision)
 		f->len += write(1, "0", 1);
 	f->len += ft_itoa_base_pf(num, 10);

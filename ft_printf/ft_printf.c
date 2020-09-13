@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 13:05:30 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/06/28 13:09:24 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/08/29 16:38:30 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,7 @@ int				ft_printf(const char *format, ...)
 	if (!(f = init_struc(f)))
 		return (-1);
 	va_start(ap, format);
-	if (format[0] == '%' && format[1] == '\0')
-		return (-1);
-	else if (!ft_strchr(format, '%'))
+	if (!ft_strchr(format, '%'))
 		f->len += write(1, format, ft_strlen(format));
 	else
 		process_format(format, f, ap);

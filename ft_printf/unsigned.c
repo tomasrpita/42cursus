@@ -6,13 +6,13 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 12:50:11 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/06/28 12:50:35 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/09/10 07:49:51 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_padding(int numlen, t_ftpf *f)
+static void	print_padding(int numlen, t_ftpf *f)
 {
 	if (!f->dot)
 		while (f->width-- > numlen)
@@ -24,14 +24,15 @@ static void	ft_padding(int numlen, t_ftpf *f)
 		}
 	else
 	{
-		if (f->precision > numlen)
-			while (f->width-- > f->precision)
-			{
-				if (f->fzero)
-					f->len += write(1, "0", 1);
-				else
-					f->len += write(1, " ", 1);
-			}
+		if (numlen < f->precision)
+			f->width -= (f->precision - numlen);
+		while (f->width-- > numlen)
+		{
+			if (f->fzero && !f->dot)
+				f->len += write(1, "0", 1);
+			else
+				f->len += write(1, " ", 1);
+		}
 	}
 }
 
@@ -52,11 +53,8 @@ static void	print_unsigned_la(intmax_t num, t_ftpf *f)
 	while (numlen++ < f->precision)
 		f->len += write(1, "0", 1);
 	f->len += ft_uitoa_base_pf(num, 10, 0);
-	while (f->width >= numlen)
-	{
+	while (f->width-- >= numlen)
 		f->len += write(1, " ", 1);
-		f->width--;
-	}
 }
 
 static void	print_unsigned_ra(uintmax_t num, t_ftpf *f)
@@ -73,7 +71,7 @@ static void	print_unsigned_ra(uintmax_t num, t_ftpf *f)
 		}
 		return ;
 	}
-	ft_padding(numlen, f);
+	print_padding(numlen, f);
 	while (numlen++ < f->precision)
 		f->len += write(1, "0", 1);
 	f->len += ft_uitoa_base_pf(num, 10, 0);

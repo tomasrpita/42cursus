@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 13:49:55 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/06/28 13:58:33 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/09/10 07:37:40 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,13 @@ void	decimal_padding_ra(int numlen, int negative, t_ftpf *f)
 		}
 	else
 	{
-		while (f->width-- > f->precision)
+		if (negative == 1 && f->precision >= numlen)
+			f->width--;
+		if (numlen < f->precision)
+			f->width -= (f->precision - numlen);
+		while (f->width-- > numlen)
 		{
-			if ((f->fzero && f->width != f->precision) || negative == 1)
+			if (f->fzero && !f->dot)
 				f->len += write(1, "0", 1);
 			else
 				f->len += write(1, " ", 1);

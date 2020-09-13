@@ -6,7 +6,7 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 12:45:50 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/06/28 12:48:59 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/08/29 13:54:22 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,39 @@
 
 int		ft_signed_numlen(long int num, int base)
 {
-	int			i;
+	int			numlem;
 
-	i = 0;
+	numlem = 0;
 	if (num == 0)
 		return (1);
 	if (num < -9223372036854775807)
 		return (20);
 	if (num < 0)
 	{
-		i++;
+		numlem++;
 		num *= -1;
 	}
 	while (num > 0)
 	{
 		num /= base;
-		i++;
+		numlem++;
 	}
-	return (i);
+	return (numlem);
 }
 
 int		ft_unsigned_numlen(uintmax_t num, int base)
 {
-	int			i;
+	int			numlem;
 
-	i = 0;
+	numlem = 0;
 	if (num == 0)
 		return (1);
 	while (num > 0)
 	{
 		num /= base;
-		i++;
+		numlem++;
 	}
-	return (i);
+	return (numlem);
 }
 
 int		ft_itoa_base_pf(long int num, int base)

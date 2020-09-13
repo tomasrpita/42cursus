@@ -1,0 +1,7 @@
+pft/
+*.o
+*.a
+*.out
+*.gch
+.vscode/
+main*

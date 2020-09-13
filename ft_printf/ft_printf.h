@@ -6,14 +6,14 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 12:36:52 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/06/28 13:59:24 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/08/29 13:34:08 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "../libft/libft.h"
+# include "libft/libft.h"
 # include <stdarg.h>
 # include <stdint.h>
 

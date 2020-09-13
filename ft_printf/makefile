@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/29 07:01:38 by tpita-de          #+#    #+#              #
-#    Updated: 2020/06/29 07:06:41 by tpita-de         ###   ########.fr        #
+#    Updated: 2020/09/11 08:28:22 by tpita-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS	=	char.c \
 			pointer.c \
 			string.c \
 			unsigned.c \
-			utils.c \
+			utils.c
 
 OBJS	:= ${SRCS:.c=.o}
 
@@ -49,7 +49,7 @@ clean:
 		${RM} ${OBJS}
 
 fclean:	clean
-		${RM} ${NAME} libft/*.o *.o
+		${RM} ${NAME} libft/*.o *.o libft/*.a
 
 re:		fclean all
 .PHONY: all clean fclean re

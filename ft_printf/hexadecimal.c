@@ -6,11 +6,35 @@
 /*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 12:57:53 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/06/28 12:59:02 by tpita-de         ###   ########.fr       */
+/*   Updated: 2020/09/10 08:01:52 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void	print_padding(int numlen, t_ftpf *f)
+{
+	if (!f->dot)
+		while (f->width-- > numlen)
+		{
+			if (f->fzero)
+				f->len += write(1, "0", 1);
+			else
+				f->len += write(1, " ", 1);
+		}
+	else
+	{
+		if (numlen < f->precision)
+			f->width -= (f->precision - numlen);
+		while (f->width-- > numlen)
+		{
+			if (f->fzero && !f->dot)
+				f->len += write(1, "0", 1);
+			else
+				f->len += write(1, " ", 1);
+		}
+	}
+}
 
 static void	print_hex_la(intmax_t num, t_ftpf *f, char casetp)
 {
@@ -31,30 +55,6 @@ static void	print_hex_la(intmax_t num, t_ftpf *f, char casetp)
 	f->len += ft_uitoa_base_pf(num, 16, casetp);
 	while (f->width-- >= numlen)
 		f->len += write(1, " ", 1);
-}
-
-static void	print_padding(int num, t_ftpf *f)
-{
-	if (!f->dot)
-		while (f->width-- > num)
-		{
-			if (f->fzero)
-				f->len += write(1, "0", 1);
-			else
-				f->len += write(1, " ", 1);
-		}
-	else
-	{
-		if (f->fzero)
-			f->width--;
-		while (f->width-- > num)
-		{
-			if (f->fzero)
-				f->len += write(1, "0", 1);
-			else
-				f->len += write(1, " ", 1);
-		}
-	}
 }
 
 static void	print_hex_ra(uintmax_t num, t_ftpf *f, char casetp)
