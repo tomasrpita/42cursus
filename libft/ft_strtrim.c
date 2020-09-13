@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomasrpita <tomasrpita@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpita-de <tpita-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 17:24:27 by tpita-de          #+#    #+#             */
-/*   Updated: 2020/06/06 19:14:09 by tomasrpita       ###   ########.fr       */
+/*   Updated: 2020/08/29 15:05:48 by tpita-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char		*ft_strtrim(char const *s1, char const *set)
 	start = s1;
 	while (ft_strchr(set, *start) && *start)
 		start++;
-	if (*start == '\0')
+	if (start == (void *)0)
 		return (ft_strdup(""));
 	end = s1;
 	while (*(end + 1))
